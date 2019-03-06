@@ -31,3 +31,5 @@
 /config/master.key
 
 /\!resources/*
+/.idea/*
+.DS_Store
