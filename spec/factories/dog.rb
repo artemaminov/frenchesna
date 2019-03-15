@@ -1,13 +1,20 @@
 FactoryBot.define do
 
   factory :dog do
-    name { Faker::Name.name_with_middle }
+    fullname { Faker::Name.name_with_middle }
     nickname { Faker::Name.first_name }
     birthdate { Faker::Date.birthday(1, 10) }
     about { Faker::Lorem.paragraph(2) }
     award_point { Faker::Number.between(1, 5) }
     rip { Faker::Boolean.boolean }
     gender { Faker::Number.between(0, 1) }
+
+    # trait :with_avatar do
+    #   after(:create) do |dog|
+    #     dog.avatar = create(:image, dog: dog)
+    #     dog.avatar.file.attach(FilesTestHelper.jpg)
+    #   end
+    # end
 
     trait :with_pictures_uploaded do
       transient {
@@ -16,12 +23,11 @@ FactoryBot.define do
 
       after(:create) do |dog, evaluator|
         build_list(:image, evaluator.images_count, dog: dog) do #Why order is empty
-          file_path = Rails.root.join('spec', 'support', 'assets', 'dog-thumb.jpg')
-          file = fixture_file_upload(file_path, 'image/jpg')
-          byebug
-          dog.pictures.create.file.attach(file)
+          dog.pictures.create.file.attach(FilesTestHelper.jpg)
+          dog.background = dog.pictures.first
         end
       end
+
     end
 
   end

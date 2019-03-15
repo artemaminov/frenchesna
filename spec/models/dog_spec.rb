@@ -2,22 +2,27 @@ require 'rails_helper'
 
 RSpec.describe Dog, type: :model do
   subject { create(:dog) }
-  let!(:mydog) { create(:dog, :with_pictures_uploaded, images_count: 10) }
+  let(:dog_with_pictures) { create(:dog, :with_pictures_uploaded, images_count: 5) }
 
-  context 'when added' do
+  context 'when creating' do
     it { is_expected.to validate_presence_of :nickname }
-    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :fullname }
     it { is_expected.to validate_presence_of :birthdate }
     it { is_expected.to validate_presence_of :about }
     it { is_expected.to validate_presence_of :award_point }
-    it { is_expected.to validate_presence_of :rip }
-    it { is_expected.to define_enum_for(:gender) }
-    it 'includes pictures' do
-      byebug
-      expect(mydog.pictures.count).to eq(10)
+    it { is_expected.to validate_inclusion_of(:rip).in_array([true, false]) }
+    it { is_expected.to define_enum_for(:gender).with_values(male: 1, female: 0) }
+    it 'should have avatar' do
+      subject.avatar = create(:image, dog: subject)
+      subject.avatar.file.attach(FilesTestHelper.jpg)
+      expect(subject.avatar.file).to be_attached
     end
-    # it { expect(adult_dog.avatar).to be_attached }
-    # it { expect(adult_dog.background).to be_attached }
+    it 'should have pictures' do
+      expect(dog_with_pictures.pictures.count).to eq(5)
+    end
+    it 'should have background' do
+      expect(dog_with_pictures.background.file).to be_attached
+    end
   end
 
   context 'when kid added to' do
