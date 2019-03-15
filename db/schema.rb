@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2019_03_02_075319) do
   end
 
   create_table "dogs", force: :cascade do |t|
-    t.string "name"
+    t.string "fullname"
     t.string "nickname"
     t.date "birthdate"
     t.text "about"
