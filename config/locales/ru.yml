@@ -1,5 +1,27 @@
 ru:
+  active_admin:
+    move: Переместить
   activerecord:
+    attributes:
+      dog:
+        fullname: Полное имя
+        nickname: Кличка
+        birthdate: Дата рождения
+        about: О собаке
+        gender: Пол
+        award_point: Разводная оценка
+        rip: Жива
+        father: Отец
+        mother: Мать
+        avatar: Аватар
+        background: Фоновое изображение
+        pictures: Фото
+    models:
+      dog:
+        one: Собаку
+        few: Собаки
+        many: Собак
+        other: Собаки
     errors:
       messages:
         record_invalid: Отсутствует запись
