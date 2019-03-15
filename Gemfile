@@ -61,7 +61,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
   gem 'database_cleaner'
-  gem 'fuubar'
+  # gem 'fuubar'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
