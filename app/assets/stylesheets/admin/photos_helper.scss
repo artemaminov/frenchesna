@@ -1,0 +1,34 @@
+.dogs-photos-list {
+  .dogs-background {
+    outline: 3px double #ff1146;
+    margin-right: 5px;
+  }
+  h3 {
+    display: none;
+  }
+  .has_many_container {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+    fieldset {
+      input[type="file"] {
+        display: none;
+      }
+      .handle {
+        top: 0;
+        right: 0;
+        padding-left: 24px;
+        bottom: 50px;
+        left: 0;
+      }
+      .file.input.optional {
+        label {
+          display: none;
+        }
+      }
+      & > ol > li p.inline-hints {
+        margin: 0;
+      }
+    }
+  }
+}
