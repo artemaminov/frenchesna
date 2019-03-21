@@ -2,6 +2,7 @@ ActiveAdmin.register Dog do
 
   index do
     # selectable_column
+    column :puppy
     column :fullname
     column :nickname
     column :gender
@@ -15,6 +16,7 @@ ActiveAdmin.register Dog do
 
   show do
     attributes_table do
+      row :puppy
       row :fullname
       row :nickname
       row :award_point
@@ -27,7 +29,7 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :fullname, :nickname, :birthdate, :about, :gender, :award_point, :rip, :father_id, :mother_id, :avatar_id, :background_id, pictures_attributes: [:id, :dog_id, :order, :file, :_destroy]
+  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :award_point, :rip, :father_id, :mother_id, :avatar_id, :background_id, pictures_attributes: [:id, :dog_id, :order, :file, :_destroy]
 
   form do |f|
     within head do
@@ -38,6 +40,7 @@ ActiveAdmin.register Dog do
     end
     f.semantic_errors *f.object.errors.keys
     f.inputs 'Details' do
+      f.input :puppy
       f.input :fullname
       f.input :nickname
       f.input :award_point

@@ -66,7 +66,8 @@ ActiveRecord::Schema.define(version: 2019_03_02_075319) do
     t.text "about"
     t.integer "gender", default: 0
     t.integer "award_point"
-    t.boolean "rip"
+    t.boolean "puppy", default: true
+    t.boolean "rip", default: true
     t.integer "father_id"
     t.integer "mother_id"
     t.integer "avatar_id"

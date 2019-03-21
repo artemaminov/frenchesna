@@ -8,6 +8,7 @@ FactoryBot.define do
     award_point { Faker::Number.between(1, 5) }
     rip { Faker::Boolean.boolean }
     gender { Faker::Number.between(0, 1) }
+    puppy { Faker::Boolean.boolean }
 
     # trait :with_avatar do
     #   after(:create) do |dog|
