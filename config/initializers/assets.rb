@@ -11,3 +11,4 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 Rails.application.config.assets.precompile += %w( activestorage.js admin/direct_uploads.js admin/direct_uploads.css admin/photos_helper.css )
+Rails.application.config.assets.js_compressor = Uglifier.new(harmony: true)
