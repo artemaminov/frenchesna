@@ -1,0 +1,17 @@
+<ul>
+  <li>
+    <span class="title">Собаки</span>
+    <ul>
+      <%= render partial: "shared/dogs_list", locals: { dogs: dogs } unless dogs.blank? %>
+    </ul>
+  </li>
+  <li>
+    <span class="title">Щенки</span>
+    <ul>
+      <%= render partial: "shared/dogs_list", locals: { dogs: puppies } unless puppies.blank? %>
+    </ul>
+  </li>
+  <li>
+    <a  class="title" href="">Контакты</a>
+  </li>
+</ul>
