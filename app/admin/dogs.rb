@@ -6,11 +6,7 @@ ActiveAdmin.register Dog do
     column :fullname
     column :nickname
     column :gender
-    column :award_point
-    column :mother
-    column :father
     column :birthdate, as: :datepicker
-    column :rip
     actions
   end
 
