@@ -9,7 +9,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body style="background-image: url(<%= url_for Preference.background %>)">
+    <div class="logo">
+      <a href="/"></a>
+    </div>
+    <div class="sidebar">
+      <div class="menu">
+        <%= render partial: "shared/menu", locals: { dogs: @dogs, puppies: @puppies } %>
+      </div>
+    </div>
+    <div class="content">
+      <%= yield %>
+    </div>
   </body>
 </html>
