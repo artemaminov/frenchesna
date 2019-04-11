@@ -1,0 +1,10 @@
+<% dogs.each do |dog| %>
+<li>
+  <a href="/dogs/<%= dog.id %>">
+    <span class="avatar">
+      <%= image_tag url_for(dog.avatar) unless dog.avatar.blank? %>
+      <span class="<%= dog.gender %> item"><%= dog.nickname %></span>
+    </span>
+  </a>
+</li>
+<% end %>

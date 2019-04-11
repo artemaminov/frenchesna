@@ -1,0 +1,6 @@
+if image.file.attached?
+  img_class = "dogs-background" if dog.background == image
+  img src: url_for(image.file.variant(resize: "100x100").processed), class: img_class
+else
+  content_tag(:span, "No images yet")
+end

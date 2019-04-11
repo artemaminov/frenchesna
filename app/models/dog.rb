@@ -15,4 +15,11 @@ class Dog < ApplicationRecord
   validates_presence_of :fullname, :nickname, :birthdate, :award_point, :about
   validates_inclusion_of :gender, in: %w(male female)
   validates_inclusion_of :rip, in: [true, false]
+
+  scope :alive, -> { where(rip: false) }
+  scope :puppies, -> { where(puppy: true) }
+  scope :adults, -> { where(puppy: false) }
+  scope :female, -> { where(gender: 'female') }
+  scope :male, -> { where(gender: 'male') }
+  scope :parentable, -> { adults.alive }
 end

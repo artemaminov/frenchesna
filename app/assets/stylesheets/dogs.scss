@@ -1,0 +1,31 @@
+// Place all the styles related to the dogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$avatar_dimensions: 60px;
+
+.avatar {
+  display: inline-block;
+  width: $avatar_dimensions;
+  height: $avatar_dimensions;
+  background-color: aqua;
+  border: 2px solid black;
+  border-radius: 30px;
+    span {
+      line-height: $avatar_dimensions;
+      padding-left: 4.5em;
+    }
+}
+
+.male {
+  color: rgb(94, 94, 199);
+  i {
+
+  }
+}
+
+.female {
+  color: rgb(230, 78, 103);
+  i {
+
+  }
+}
