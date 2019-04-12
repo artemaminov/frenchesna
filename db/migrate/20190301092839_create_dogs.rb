@@ -11,8 +11,6 @@ class CreateDogs < ActiveRecord::Migration[5.2]
       t.boolean :rip, default: false
       t.references :father, index: true, foreign_key: { to_table: :dogs }
       t.references :mother, index: true, foreign_key: { to_table: :dogs }
-      t.references :avatar, foreign_key: { to_table: :images }
-      t.references :background, foreign_key: { to_table: :images }
     end
   end
 end
