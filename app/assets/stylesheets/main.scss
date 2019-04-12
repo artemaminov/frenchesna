@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Alice|Montserrat:400,400i,700&subset=cyrillic');
+@import "variables", "mixins";
 
-@mixin alice {
-  font-family: 'Alice', serif;
-}
-@mixin mont {
-  font-family: 'Montserrat', sans-serif;
+a {
+  text-decoration: none;
 }
 
 body {
@@ -29,16 +27,31 @@ body {
     .menu {
       .title {
         @include mont;
-        color: white;
         font-size: 1.2em;
         font-weight: bold;
-        text-decoration: none;
         text-transform: uppercase;
-        text-shadow: #4A4A4A 1px 1px 0;
+        text-shadow: $grey 1px 1px 0;
+        padding-bottom: .5em;
+        display: block;
+        color: $menu-color;
+        a {
+          color: inherit;
+        }
       }
-      .item {
-        @include mont;
-        font-weight: normal;
+      .list {
+        .item {
+          @include mont;
+          font-weight: normal;
+          padding-bottom: .3em;
+          a {
+            span {
+              color: $grey;
+            }
+          }
+        }
+        &:last-child {
+          padding-bottom: 1.5em;
+        }
       }
     }
   }
