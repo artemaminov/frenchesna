@@ -44,6 +44,7 @@ body {
           font-weight: normal;
           padding-bottom: .3em;
           a {
+            display: inline-block;
             span {
               color: $grey;
             }
