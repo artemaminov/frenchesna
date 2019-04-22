@@ -1,5 +1,5 @@
 class DogsController < ApplicationController
-  before_action :get_menu_items, :get_background
+  before_action :get_menu_items
 
   def index
     @background = Preference.background
