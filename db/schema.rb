@@ -100,5 +100,4 @@ ActiveRecord::Schema.define(version: 2019_04_22_094518) do
 
   add_foreign_key "genealogies", "dogs", column: "child_id"
   add_foreign_key "genealogies", "dogs", column: "parent_id"
-  add_foreign_key "images", "dogs"
 end
