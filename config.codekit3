@@ -1205,6 +1205,14 @@
 		"oAP": "/db/migrate/20190414101534_add_dogs_foreign_key_to_images.rb",
 		"oF": 0
 		},
+	"/db/migrate/20190422094518_add_about_to_preferences.rb": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/db/migrate/20190422094518_add_about_to_preferences.rb",
+		"oF": 0
+		},
 	"/db/schema.rb": {
 		"cB": 0,
 		"ft": 8192,
@@ -1937,6 +1945,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/storage/va/ri/variants/wmdJSLN3AiSvpVHs1Nj4mL7i/6eac14b1ef7efe9a281cbc2dcea9ae3bb8b8996328025c765ff04b1d89ba27c8",
+		"oF": 0
+		},
+	"/storage/va/ri/variants/xcnLuSnbhEFjuzMeiXUcbgPo/6eac14b1ef7efe9a281cbc2dcea9ae3bb8b8996328025c765ff04b1d89ba27c8": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/storage/va/ri/variants/xcnLuSnbhEFjuzMeiXUcbgPo/6eac14b1ef7efe9a281cbc2dcea9ae3bb8b8996328025c765ff04b1d89ba27c8",
 		"oF": 0
 		},
 	"/storage/wm/dJ/wmdJSLN3AiSvpVHs1Nj4mL7i": {
