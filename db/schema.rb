@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_23_071613) do
+ActiveRecord::Schema.define(version: 2019_04_14_101534) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -68,14 +71,17 @@ ActiveRecord::Schema.define(version: 2019_03_23_071613) do
     t.integer "award_point"
     t.boolean "puppy", default: true
     t.boolean "rip", default: true
-    t.integer "father_id"
-    t.integer "mother_id"
-    t.integer "avatar_id"
-    t.integer "background_id"
+    t.bigint "background_id"
+    t.bigint "avatar_id"
     t.index ["avatar_id"], name: "index_dogs_on_avatar_id"
     t.index ["background_id"], name: "index_dogs_on_background_id"
-    t.index ["father_id"], name: "index_dogs_on_father_id"
-    t.index ["mother_id"], name: "index_dogs_on_mother_id"
+  end
+
+  create_table "genealogies", force: :cascade do |t|
+    t.bigint "parent_id"
+    t.bigint "child_id"
+    t.index ["child_id"], name: "index_genealogies_on_child_id"
+    t.index ["parent_id"], name: "index_genealogies_on_parent_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -91,4 +97,7 @@ ActiveRecord::Schema.define(version: 2019_03_23_071613) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "genealogies", "dogs", column: "child_id"
+  add_foreign_key "genealogies", "dogs", column: "parent_id"
+  add_foreign_key "images", "dogs"
 end
