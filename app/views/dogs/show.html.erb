@@ -1,2 +1,32 @@
-<h1>Dogs#show</h1>
-<p>Find me in app/views/dogs/show.html.erb</p>
+<div class="space"></div>
+<div class="title">
+  <h1><%= @dog.nickname %></h1>
+  <h2><%= @dog.fullname %></h2>
+</div>
+<div class="about-company box">
+  <h2>О собаке</h2>
+  <p><%= @dog.about %></p>
+</div>
+<% unless @dog.pictures.empty? %>
+<div class="pictures">
+  <h2 class="our-dogs">Фотографии</h2>
+  <div class="picture">
+    <% @dog.pictures.each do |picture| %>
+      <%= image_tag url_for picture.file.variant(resize: "100x100").processed %>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
+<% content_for :right_sidebar do %>
+<% unless @dog.kids.blank? %>
+<div class="menu">
+  <div class="descendants">
+    <span class="title">Потомство</span>
+    <ul class="list">
+      <%= render partial: "shared/dogs_list", locals: { dogs: @dog.kids, reverse: true } %>
+    </ul>
+  </div>
+</div>
+<% end %>
+<% end %>

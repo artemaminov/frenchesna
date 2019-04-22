@@ -1,6 +1,61 @@
 @import url('https://fonts.googleapis.com/css?family=Alice|Montserrat:400,400i,700&subset=cyrillic');
 @import "variables", "mixins";
 
+@media only screen and (max-width: 800px)  {
+  body {
+    min-width: auto;
+    .content {
+      flex-flow: column;
+      .sidebar, .main {
+        margin: 0 30px;
+        width: auto;
+      }
+      .sidebar {
+        &.right {
+          margin: 0 30px;
+        }
+        .menu {
+          .descendants {
+            text-align: left;
+          }
+        }
+      }
+      .main {
+        flex: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 800px)  {
+  body {
+    min-width: 1148px;
+    .content {
+      .sidebar {
+        margin: 0 30px 0 60px;
+        width: 250px;
+        &.right {
+          margin: 0 60px 0 30px;
+        }
+        .menu {
+          .descendants {
+            text-align: right;
+          }
+        }
+      }
+      .main {
+        flex: auto;
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 240px);
+        .space {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
 a {
   text-decoration: none;
 }
@@ -22,36 +77,97 @@ body {
       height: 100%;
     }
   }
-  .sidebar {
-    margin: 0 0 0 60px;
-    .menu {
-      .title {
-        @include mont;
-        font-size: 1.2em;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-shadow: $grey 1px 1px 0;
-        padding-bottom: .5em;
-        display: block;
-        color: $menu-color;
-        a {
-          color: inherit;
-        }
-      }
-      .list {
-        .item {
+  .content {
+    display: flex;
+    .sidebar {
+      flex: none;
+      .menu {
+        .title {
           @include mont;
-          font-weight: normal;
-          padding-bottom: .3em;
+          font-size: 1.2em;
+          font-weight: bold;
+          text-transform: uppercase;
+          text-shadow: $shadow;
+          padding-bottom: .5em;
+          display: block;
+          color: $menu-color;
           a {
-            display: inline-block;
-            span {
-              color: $grey;
-            }
+            color: inherit;
           }
         }
-        &:last-child {
-          padding-bottom: 1.5em;
+        .list {
+          .item {
+            @include mont;
+            font-weight: normal;
+            padding-bottom: .3em;
+            a {
+              display: inline-block;
+              span {
+                color: $menu-color;
+                text-shadow: $shadow;
+                display: inline-flex;
+                height: 68px;
+                align-items: center;
+              }
+            }
+          }
+          &:last-child {
+            padding-bottom: 1.5em;
+          }
+        }
+      }
+    }
+    .main {
+      h1, h2 {
+        color: $menu-color;
+        text-shadow: $shadow;
+      }
+      h1 {
+        @include alice;
+        font-size: 5em;
+        margin-bottom: .1em;
+      }
+      h2, p {
+        @include mont;
+      }
+      h2 {
+        font-size: 1.3em;
+        font-style: italic;
+        text-transform: uppercase;
+        margin-bottom: .5em;
+      }
+      p {
+        font-size: 1em;
+        font-style: italic;
+      }
+      .title {
+        margin-bottom: 1em;
+      }
+      .box {
+        padding: 1em;
+        margin-bottom: 2em;
+      }
+      .about-company {
+        background-color: rgba(255, 255, 255, .5);
+        border-radius: 6px;
+        h2 {
+          font-style: normal;
+        }
+      }
+      .dogs-list {
+        .item {
+          float: left;
+          text-align: center;
+          .avatar {
+            margin-right: 10px;
+            i {
+              margin: 0;
+            }
+            p {
+              color: $menu-color;
+              text-shadow: $shadow;
+            }
+          }
         }
       }
     }

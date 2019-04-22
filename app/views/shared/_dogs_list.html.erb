@@ -1,10 +1,19 @@
 <% dogs.each do |dog| %>
 <li class="item">
   <a href="/dogs/<%= dog.id %>">
-    <span class="avatar <%= dog.gender %> <%= dog.avatar || "stub" %>">
-      <%= image_tag url_for(dog.avatar) unless dog.avatar.blank? %>
-      <span><%= dog.nickname %></span>
-    </span>
+    <div>
+      <% unless local_assigns[:reverse] %>
+      <span class="avatar reverse">
+        <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file })\"".html_safe unless dog.avatar.blank? %>></i>
+        <p><%= dog.nickname %></p>
+      </span>
+      <% else %>
+      <span class="avatar">
+        <p><%= dog.nickname %></p>
+        <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file })\"".html_safe unless dog.avatar.blank? %>></i>
+      </span>
+      <% end %>
+    </div>
   </a>
 </li>
 <% end %>

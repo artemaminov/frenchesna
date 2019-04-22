@@ -1,10 +1,18 @@
 .dogs-photos-list {
-  .dogs-background {
-    outline: 3px double #ff1146;
-    margin-right: 5px;
+  #dog_background_input {
+    .choice {
+      display: inline-block;
+    }
   }
   h3 {
     display: none;
+  }
+  .panel {
+    margin-top: 2em;
+    .dogs-background {
+      outline: 3px double #ff1146;
+      margin-right: 5px;
+    }
   }
   .has_many_container {
     flex-wrap: wrap;
