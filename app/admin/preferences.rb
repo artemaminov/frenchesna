@@ -1,5 +1,5 @@
 ActiveAdmin.register Preference do
-  permit_params :background
+  permit_params :background, :about
 
   form do |f|
     within head do
@@ -14,6 +14,7 @@ ActiveAdmin.register Preference do
         hint = image_tag(f.object.background.variant(resize: "100x100").processed)
       end
       f.input :background, as: :file, input_html: { direct_upload: true }, hint: hint
+      f.input :about
     end
     f.actions
   end

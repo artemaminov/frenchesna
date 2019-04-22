@@ -5,4 +5,10 @@ class Preference < ApplicationRecord
     prefs = Preference.first
     prefs.background if prefs
   end
+
+  def self.about
+    prefs = Preference.first
+    prefs.about if prefs
+  end
+
 end
