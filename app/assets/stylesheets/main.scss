@@ -82,6 +82,17 @@ body {
     .sidebar {
       flex: none;
       .menu {
+        input {
+          display: none;
+          & ~ .list {
+            max-height: 0;
+            overflow: hidden;
+            //animation: menuOpen 2s ease-out 0ms 1 reverse forwards running;
+          }
+          &:checked ~ .list {
+            animation: menuOpen 2s ease-out 0ms 1 normal forwards running;
+          }
+        }
         .title {
           @include mont;
           font-size: 1.2em;
@@ -91,6 +102,7 @@ body {
           padding-bottom: .5em;
           display: block;
           color: $menu-color;
+          cursor: pointer;
           a {
             color: inherit;
           }
@@ -171,5 +183,14 @@ body {
         }
       }
     }
+  }
+}
+
+@keyframes menuOpen {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 100vh;
   }
 }
