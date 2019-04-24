@@ -33,3 +33,5 @@
 /\!resources/*
 /.idea/*
 .DS_Store
+/.vscode/*
+config.codekit3
