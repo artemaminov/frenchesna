@@ -41,10 +41,10 @@
               background-color: #5a83aa;
               position: absolute;
               top: 0;
-              width: 100%;
-              right: 0;
+              right: 100px;
               left: 0;
               bottom: 0;
+              padding: 60px;
             }
           }
           .burger-menu {
@@ -105,6 +105,9 @@
           margin: 0 30px;
         }
         .menu {
+          .burger-menu {
+            display: none;
+          }
           .descendants {
             text-align: left;
           }
@@ -133,6 +136,9 @@
           margin: 0 60px 0 30px;
         }
         .menu {
+          .burger-menu {
+            display: none;
+          }
           .descendants {
             text-align: right;
           }
@@ -182,9 +188,6 @@ body {
     .sidebar {
       flex: none;
       .menu {
-        .burger-menu {
-          display: none;
-        }
         input {
           display: none;
           & ~ .list {
