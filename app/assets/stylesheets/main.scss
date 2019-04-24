@@ -3,6 +3,7 @@
 
 @media only screen and (max-width: 800px)  {
   body {
+    overflow: hidden;
     min-width: auto;
     .content {
       flex-flow: column;
@@ -15,6 +16,64 @@
           margin: 0 30px;
         }
         .menu {
+          input#burger:checked {
+            & ~ .burger-menu {
+              label {
+                .line {
+                  &.top {
+                    display: none;
+                  }
+                  &.mid-top {
+                    transform: rotate(45deg);
+                    top: 6px;
+                  }
+                  &.mid-bottom {
+                    transform: rotate(-45deg);
+                    top: 4px;
+                  }
+                  &.bottom {
+                    display: none;
+                  }
+                }
+              }
+            }
+            & ~ ul {
+              background-color: #5a83aa;
+              position: absolute;
+              top: 0;
+              width: 100%;
+              right: 0;
+              left: 0;
+              bottom: 0;
+            }
+          }
+          .burger-menu {
+            display: block;
+            label {
+              padding: 10px 0;
+              display: block;
+              position: absolute;
+              right: 30px;
+              top: 30px;
+              cursor: pointer;
+              .line {
+                background: white;
+                height: 2px;
+                width: 40px;
+                display: block;
+                position: relative;
+                &.mid-top {
+                  top: 6px;
+                }
+                &.mid-bottom {
+                  top: 4px;
+                }
+                &.bottom {
+                  top: 10px;
+                }
+              }
+            }
+          }
           .descendants {
             text-align: left;
           }
@@ -27,7 +86,7 @@
   }
 }
 
-@media only screen and (min-width: 800px)  {
+@media only screen and (min-width: 900px)  {
   ul {
     background-color: #5a83aa;
     position: absolute;
@@ -88,57 +147,8 @@ body {
     .sidebar {
       flex: none;
       .menu {
-        input#burger:checked {
-          & ~ .burger-menu {
-            label {
-              .line {
-                &.top {
-                  display: none;
-                }
-                &.mid-top {
-                  transform: rotate(45deg);
-                  top: 6px;
-                }
-                &.mid-bottom {
-                  transform: rotate(-45deg);
-                  top: 4px;
-                }
-                &.bottom {
-                  display: none;
-                }
-              }
-            }
-          }
-          & ~ ul {
-            right: 100px;
-          }
-        }
         .burger-menu {
-          display: block;
-          label {
-            padding: 10px 0;
-            display: block;
-            position: absolute;
-            right: 30px;
-            top: 30px;
-            cursor: pointer;
-            .line {
-              background: white;
-              height: 2px;
-              width: 40px;
-              display: block;
-              position: relative;
-              &.mid-top {
-                top: 6px;
-              }
-              &.mid-bottom {
-                top: 4px;
-              }
-              &.bottom {
-                top: 10px;
-              }
-            }
-          }
+          display: none;
         }
         input {
           display: none;
@@ -182,7 +192,7 @@ body {
             }
           }
           &:last-child {
-            padding-bottom: 1.5em;
+            margin-bottom: 1.5em;
           }
         }
       }
