@@ -16,6 +16,15 @@
     <div class="content">
       <div class="sidebar">
         <div class="menu">
+          <input type="checkbox" id="burger">
+          <div class="burger-menu">
+            <label for="burger">
+              <span class="line top"></span>
+              <span class="line mid-top"></span>
+              <span class="line mid-bottom"></span>
+              <span class="line bottom"></span>
+            </label>
+          </div>
           <%= render partial: "shared/menu", locals: { dogs: @dogs, puppies: @puppies } %>
         </div>
       </div>
