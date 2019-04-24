@@ -28,6 +28,12 @@
 }
 
 @media only screen and (min-width: 800px)  {
+  ul {
+    background-color: #5a83aa;
+    position: absolute;
+    top: 30px;
+    right: -100px;
+  }
   body {
     min-width: 1148px;
     .content {
@@ -82,6 +88,58 @@ body {
     .sidebar {
       flex: none;
       .menu {
+        input#burger:checked {
+          & ~ .burger-menu {
+            label {
+              .line {
+                &.top {
+                  display: none;
+                }
+                &.mid-top {
+                  transform: rotate(45deg);
+                  top: 6px;
+                }
+                &.mid-bottom {
+                  transform: rotate(-45deg);
+                  top: 4px;
+                }
+                &.bottom {
+                  display: none;
+                }
+              }
+            }
+          }
+          & ~ ul {
+            right: 100px;
+          }
+        }
+        .burger-menu {
+          display: block;
+          label {
+            padding: 10px 0;
+            display: block;
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            cursor: pointer;
+            .line {
+              background: white;
+              height: 2px;
+              width: 40px;
+              display: block;
+              position: relative;
+              &.mid-top {
+                top: 6px;
+              }
+              &.mid-bottom {
+                top: 4px;
+              }
+              &.bottom {
+                top: 10px;
+              }
+            }
+          }
+        }
         input {
           display: none;
           & ~ .list {
