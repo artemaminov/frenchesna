@@ -1,17 +1,14 @@
 require 'rails_helper'
 
 RSpec.feature "Home page", type: :feature do
-  context "displays all blocks" do
-    it "displays menu" do
-      visit root_path
-      within(".menu") do
-        expect(page).to have_text(Dog.all[0].nickname)
-      end
-    end
+  context "displays blocks" do
+    let!(:dogs) { create_list :dog, 5 }
 
-    it "displays hello text" do
+    it "menu with alive dogs" do
       visit root_path
-      expect(page).to have_content(".hello")
+      within(".sidebar.left .menu") do
+        expect(page).to have_text(Dog.alive.first.nickname)
+      end
     end
   end
 end

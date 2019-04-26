@@ -5,7 +5,7 @@ RSpec.describe DogsController, type: :controller do
   render_views
 
   describe "GET #index" do
-    let!(:dogs) { create_list :dog, 5, :with_pictures_uploaded }
+    let!(:dogs) { create_list :dog, 5 }
 
     it "returns http success" do
       get :index
@@ -19,8 +19,9 @@ RSpec.describe DogsController, type: :controller do
   end
 
   describe "GET #show" do
+    subject { create :dog }
     it "returns http success" do
-      get :show
+      get :show, params: { id: subject.id }
       expect(response).to have_http_status(:success)
     end
   end
