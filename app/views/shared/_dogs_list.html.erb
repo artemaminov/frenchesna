@@ -1,6 +1,6 @@
 <% dogs.each do |dog| %>
 <li class="item">
-  <a href="/dogs/<%= dog.id %>">
+  <a href="<%= dog_path dog %>">
     <div>
       <% unless local_assigns[:reverse] %>
       <span class="avatar reverse">

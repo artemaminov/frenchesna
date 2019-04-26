@@ -47,5 +47,9 @@ class Dog < ApplicationRecord
     return pictures.where.not(id: avatar.id) unless avatar.blank?
     pictures
   end
+
+  def to_param
+    "#{id}-#{fullname.parameterize}"
+  end
   
 end
