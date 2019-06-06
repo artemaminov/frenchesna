@@ -19,7 +19,7 @@ class Dog < ApplicationRecord
 
   enum gender: { male: 1, female: 0 }
 
-  validates_presence_of :fullname, :nickname, :birthdate, :award_point, :about
+  validates_presence_of :fullname, :nickname, :birthdate, :awards, :about
   validates_inclusion_of :gender, in: %w(male female)
   validates_inclusion_of :rip, in: [true, false]
 

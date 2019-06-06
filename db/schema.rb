@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_094518) do
+ActiveRecord::Schema.define(version: 2019_06_01_085539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2019_04_22_094518) do
     t.date "birthdate"
     t.text "about"
     t.integer "gender", default: 0
-    t.integer "award_point"
+    t.text "awards"
     t.boolean "puppy", default: true
     t.boolean "rip", default: true
     t.bigint "background_id"
@@ -100,4 +100,5 @@ ActiveRecord::Schema.define(version: 2019_04_22_094518) do
 
   add_foreign_key "genealogies", "dogs", column: "child_id"
   add_foreign_key "genealogies", "dogs", column: "parent_id"
+  add_foreign_key "images", "dogs"
 end

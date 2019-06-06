@@ -15,7 +15,7 @@ ActiveAdmin.register Dog do
       row :puppy
       row :fullname
       row :nickname
-      row :award_point
+      row :awards
       # row :mother
       # row :father
       row :birthdate, as: :datepicker
@@ -25,7 +25,7 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :award_point, :rip, :mother, :father, :background_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: []
+  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother, :father, :background_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: []
 
   form do |f|
     within head do
@@ -40,7 +40,7 @@ ActiveAdmin.register Dog do
       f.input :puppy
       f.input :fullname
       f.input :nickname
-      f.input :award_point
+      f.input :awards
       f.input :mother, allow_blank: false, include_hidden: false, collection: Dog.adults.female.map { |d| [d.fullname, d.id] }
       f.input :father, include_hidden: false, collection: Dog.adults.male.map { |d| [d.fullname, d.id] }
       f.input :birthdate, as: :datepicker
