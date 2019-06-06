@@ -3,6 +3,10 @@ ru:
     move: Переместить
   activerecord:
     attributes:
+      admin_user:
+        current_sign_in_at: Время логина
+        sign_in_count: Количество логинов
+        created_at: Создано
       dog:
         fullname: Полное имя
         nickname: Кличка
@@ -17,7 +21,13 @@ ru:
         avatar: Аватар
         background: Фоновое изображение
         pictures: Фото
+      preference:
+        created_at: Создано
+        updated_at: Обновлено
+        about: О питомнике
     models:
+      admin_user: Пользователи
+      preference  : Настройки
       dog:
         one: Собаку
         few: Собаки
