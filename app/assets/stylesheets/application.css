@@ -14,4 +14,5 @@
  *= require meyerweb
  *= require main
  *= require dogs
+ *= require jquery.fancybox.min
  */

@@ -12,7 +12,11 @@
   <h2 class="our-dogs">Фотографии</h2>
   <div class="picture">
     <% @dog.pictures.each do |picture| %>
-      <%= image_tag url_for picture.file.variant(resize: "100x100").processed %>
+      <%= link_to(
+              image_tag(url_for(picture.file.variant(resize: "100x100").processed)),
+              url_for(picture.file),
+              data: {fancybox: 'gallery'}
+          ) %>
     <% end %>
   </div>
 </div>
