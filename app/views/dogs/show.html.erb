@@ -8,10 +8,10 @@
   <p><%= @dog.about %></p>
 </div>
 <% unless @dog.pictures.empty? %>
-<div class="pictures">
+<div class="pictures" data-turbolinks="false">
   <h2 class="our-dogs">Фотографии</h2>
   <div class="picture">
-    <% @dog.pictures.each do |picture| %>
+    <% @dog.backgroundable.each do |picture| %>
       <%= link_to(
               image_tag(url_for(picture.file.variant(resize: "100x100").processed)),
               url_for(picture.file),
