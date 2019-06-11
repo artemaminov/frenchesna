@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_01_085539) do
+ActiveRecord::Schema.define(version: 2019_06_11_174614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_06_01_085539) do
     t.boolean "rip", default: true
     t.bigint "background_id"
     t.bigint "avatar_id"
+    t.string "genealogy_link"
     t.index ["avatar_id"], name: "index_dogs_on_avatar_id"
     t.index ["background_id"], name: "index_dogs_on_background_id"
   end

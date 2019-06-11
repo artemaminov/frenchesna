@@ -25,7 +25,7 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother, :father, :background_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: []
+  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother, :father, :genealogy_link, :background_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: []
 
   form do |f|
     within head do
@@ -43,6 +43,7 @@ ActiveAdmin.register Dog do
       f.input :awards
       f.input :mother, allow_blank: false, include_hidden: false, collection: Dog.adults.female.map { |d| [d.fullname, d.id] }
       f.input :father, include_hidden: false, collection: Dog.adults.male.map { |d| [d.fullname, d.id] }
+      f.input :genealogy_link
       f.input :birthdate, as: :datepicker
       f.input :gender
       f.input :rip
