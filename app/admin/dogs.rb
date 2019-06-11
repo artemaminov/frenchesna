@@ -35,7 +35,7 @@ ActiveAdmin.register Dog do
       link rel: "stylesheet", media: "screen", href: stylesheet_path('admin/photos_helper.css')
     end
     f.semantic_errors *f.object.errors.keys
-    f.inputs 'Details' do
+    f.inputs 'Детали' do
       f.input :avatar, as: :file, allow_destroy: true, hint: (image_tag(f.object.avatar.file.variant(resize: "100x100").processed) unless f.object.avatar.blank?), input_html: { direct_upload: true, name: "dog[avatar_attributes][file]" }
       f.input :puppy
       f.input :fullname
@@ -46,21 +46,17 @@ ActiveAdmin.register Dog do
       f.input :birthdate, as: :datepicker
       f.input :gender
       f.input :rip
-    end
-    f.inputs 'Content' do
       f.input :about
-      panel "Images" do
-        div class: "dogs-photos-list" do
-          # ; f.input :_destroy, as: :boolean, required: false
-          f.input :background, as: :radio, collection: f.object.backgroundable.map { |i| [(image_tag i.file.variant(resize: "100x100").processed), i.id] } unless f.object.pictures.blank?
-          f.input :pictures, as: :file, input_html: { multiple: true, direct_upload: true, name: "dog[pictures_attributes][][file]" }
-          panel "All images" do
-            # f.has_many :pictures, sortable: :order, sortable_start: 1, allow_destroy: true, new_record: false do |p|
-            #   # render partial: "dog_photos", locals: { dog: f.object, image: p.object }
-            #   img_class = "dogs-background" if f.object.background == p.object
-            #   p.input :file, hint: image_tag(p.object.file.variant(resize: "100x100").processed, class: img_class)
-            # end
-          end
+    end
+    f.inputs 'Изображения' do
+      f.input :background, as: :radio, collection: f.object.backgroundable.map { |i| [(image_tag i.file.variant(resize: "100x100").processed), i.id] } unless f.object.pictures.blank?
+      f.input :pictures, as: :file, input_html: { multiple: true, direct_upload: true, name: "dog[pictures_attributes][][file]" }
+      panel "Управление изображениями", class: 'dragndrop' do
+        f.has_many :pictures, sortable: :order, sortable_start: 1, allow_destroy: true, new_record: false, heading: false do |p|
+          # render partial: "dog_photos", locals: { dog: f.object, image: p.object }
+          img_class = "dogs-background" if p.object == f.object.background
+          img_class = "dogs-avatar" if p.object == f.object.avatar
+          p.input :file, hint: image_tag(p.object.file.variant(resize: "100x100").processed, class: img_class)
         end
       end
     end

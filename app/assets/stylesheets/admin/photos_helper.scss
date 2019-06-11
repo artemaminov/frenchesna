@@ -1,42 +1,45 @@
-.dogs-photos-list {
+//.dogs-photos-list {
   #dog_background_input {
     .choice {
       display: inline-block;
     }
   }
-  h3 {
-    display: none;
+  .dogs-background {
+    outline: 3px double #ff1146;
+    margin-right: 5px;
   }
-  .panel {
-    margin-top: 2em;
-    .dogs-background {
-      outline: 3px double #ff1146;
-      margin-right: 5px;
-    }
+  .dogs-avatar{
+    outline: 3px double #7111ff;
+    margin-right: 5px;
   }
-  .has_many_container {
-    flex-wrap: wrap;
-    flex-direction: row;
-    display: flex;
-    fieldset {
-      input[type="file"] {
-        display: none;
-      }
-      .handle {
-        top: 0;
-        right: 0;
-        padding-left: 24px;
-        bottom: 50px;
-        left: 0;
-      }
-      .file.input.optional {
-        label {
+  .dragndrop {
+    .has_many_container {
+      flex-wrap: wrap;
+      flex-direction: row;
+      display: flex;
+
+      fieldset {
+        input[type="file"] {
           display: none;
         }
-      }
-      & > ol > li p.inline-hints {
-        margin: 0;
+
+        .handle {
+          top: 0;
+          right: 0;
+          padding-left: 24px;
+          bottom: 50px;
+          left: 0;
+        }
+
+        .file.input.optional {
+          label {
+            display: none;
+          }
+        }
+
+        & > ol > li p.inline-hints {
+          margin: 0;
+        }
       }
     }
   }
-}
