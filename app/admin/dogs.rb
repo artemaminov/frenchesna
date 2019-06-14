@@ -51,7 +51,6 @@ ActiveAdmin.register Dog do
     end
     f.inputs 'Изображения' do
       f.input :background, as: :radio, collection: f.object.backgroundable.map { |i| [(image_tag i.file.variant(resize: "100x100").processed), i.id] } unless f.object.pictures.blank?
-      f.input :pictures, as: :file, input_html: { multiple: true, direct_upload: true, name: "dog[pictures_attributes][][file]" }
       panel "Управление изображениями", class: 'dragndrop' do
         f.has_many :pictures, sortable: :order, sortable_start: 1, allow_destroy: true, new_record: false, heading: false do |p|
           # render partial: "dog_photos", locals: { dog: f.object, image: p.object }
@@ -59,6 +58,7 @@ ActiveAdmin.register Dog do
           img_class = "dogs-avatar" if p.object == f.object.avatar
           p.input :file, hint: image_tag(p.object.file.variant(resize: "100x100").processed, class: img_class)
         end
+        f.input :pictures, as: :file, input_html: { multiple: true, direct_upload: true }
       end
     end
     f.actions
@@ -83,6 +83,14 @@ ActiveAdmin.register Dog do
     end
     
     def update
+      unless params[:dog][:pictures].blank?
+        if params[:dog][:pictures_attributes].blank?
+          params[:dog][:pictures_attributes] = {}
+        end
+        last_index = params[:dog][:pictures_attributes].keys.last.to_i
+        new_pictures_hash = params[:dog][:pictures].map { |file| {file: file}}
+        new_pictures_hash.each_with_index { |picture, index| params[:dog][:pictures_attributes][(last_index + index).to_s] = ActionController::Parameters.new picture }
+      end
       update! do |format|
         format.html { redirect_to collection_path }
       end
