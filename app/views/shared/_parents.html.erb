@@ -1,0 +1,12 @@
+<% dog.parents.each do |dog| %>
+<li class="item">
+  <a href="<%= dog_path dog %>">
+    <div>
+      <span class="avatar">
+        <span><%= dog.gender == 'female' ? "Мать" : "Отец" %><br><%= dog.nickname %></span>
+        <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file })\"".html_safe unless dog.avatar.blank? %>></i>
+      </span>
+    </div>
+  </a>
+</li>
+<% end %>

@@ -24,14 +24,25 @@
 <% end %>
 
 <% content_for :right_sidebar do %>
-<% unless @dog.kids.blank? %>
-<div class="menu">
-  <div class="descendants">
-    <span class="title">Потомство</span>
-    <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: @dog.kids, reverse: true } %>
-    </ul>
-  </div>
-</div>
-<% end %>
+  <% if @dog.puppy %>
+    <div class="menu">
+      <div class="descendants">
+        <span class="title">Родители</span>
+        <ul class="list">
+          <%= render partial: "shared/parents", locals: { dog: @dog } %>
+        </ul>
+      </div>
+    </div>
+  <% else %>
+    <% unless @dog.kids.blank? %>
+      <div class="menu">
+        <div class="descendants">
+          <span class="title">Потомство</span>
+          <ul class="list">
+            <%= render partial: "shared/dogs_list", locals: { dogs: @dog.kids, reverse: true } %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>
