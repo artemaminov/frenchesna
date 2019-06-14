@@ -16,8 +16,6 @@ ActiveAdmin.register Dog do
       row :fullname
       row :nickname
       row :awards
-      # row :mother
-      # row :father
       row :birthdate, as: :datepicker
       row :gender
       row :rip
@@ -25,7 +23,7 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother, :father, :genealogy_link, :background_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: []
+  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :genealogy_link, :background_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: []
 
   form do |f|
     within head do
@@ -41,8 +39,8 @@ ActiveAdmin.register Dog do
       f.input :fullname
       f.input :nickname
       f.input :awards
-      f.input :mother, allow_blank: false, include_hidden: false, collection: Dog.adults.female.map { |d| [d.fullname, d.id] }
-      f.input :father, include_hidden: false, collection: Dog.adults.male.map { |d| [d.fullname, d.id] }
+      f.input :mother_id, allow_blank: false, include_hidden: false, collection: Dog.adults.female.map { |d| [d.fullname, d.id] }
+      f.input :father_id, include_hidden: false, collection: Dog.adults.male.map { |d| [d.fullname, d.id] }
       f.input :genealogy_link
       f.input :birthdate, as: :datepicker
       f.input :gender
@@ -114,8 +112,8 @@ ActiveAdmin.register Dog do
     end
 
     def add_parents
-      old_parents = [resource.father, resource.mother]
-      parents = [permitted_params[:dog][:mother], permitted_params[:dog][:father]]
+      old_parents = [resource.father_id, resource.mother_id]
+      parents = [permitted_params[:dog][:mother_id], permitted_params[:dog][:father_id]]
       unless (parents - old_parents).empty?
         resource.parent_ids = parents
       end

@@ -1,5 +1,5 @@
 class Dog < ApplicationRecord
-  attr_accessor :mother, :father
+  attr_accessor :mother_id, :father_id
 
   belongs_to :avatar, class_name: "Image", optional: true, inverse_of: :dog, dependent: :destroy
   belongs_to :background, class_name: "Image", optional: true, inverse_of: :dog, dependent: :destroy
@@ -28,16 +28,18 @@ class Dog < ApplicationRecord
   scope :adults, -> { where(puppy: false) }
   scope :females, -> { where(gender: 'female') }
   scope :males, -> { where(gender: 'male') }
+  scope :mother, -> { females.first }
+  scope :father, -> { males.first }
   scope :parentable, -> { adults.alive }
   scope :backgroundable, -> {  }
 
-  def mother
+  def mother_id
     m = parents.female.first
     return m.id unless m.blank?
     nil
   end
 
-  def father
+  def father_id
     p = parents.male.first
     return p.id unless p.blank?
     nil
