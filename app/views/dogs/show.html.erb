@@ -5,7 +5,7 @@
 </div>
 <div class="about-company box">
   <h2>О собаке</h2>
-  <%= link_to "Родословная", @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "button" %>
+  <%= link_to "Родословная", @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "genealogy button" %>
   <p><%= @dog.about %></p>
 </div>
 <% unless @dog.pictures.empty? %>

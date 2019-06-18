@@ -170,11 +170,25 @@ a {
   text-decoration: none;
   display: inline-block;
   color: #000;
+  &[target="_blank"] {
+    &:before {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      background-image: asset_url('new_window.svg');
+      content: "";
+      margin-right: 4px;
+      background-repeat: no-repeat;
+      top: 3px;
+      position: relative;
+    }
+  }
 }
+
 .button {
-  padding: 1em;
+  padding: .5em;
   background-color: white;
-  border-radius: 1em;
+  border-radius: 6px;
 }
 
 body {
@@ -312,8 +326,14 @@ body {
         background-color: rgba(255, 255, 255, .8);
         border-radius: 6px;
         max-width: 700px;
+        position: relative;
         h2 {
           font-style: normal;
+        }
+        .genealogy {
+          position: absolute;
+          right: 1em;
+          top: 7px;
         }
       }
       .dogs-list {
