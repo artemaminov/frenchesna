@@ -22,13 +22,16 @@
         input[type="file"] {
           display: none;
         }
+        &.has_many_fields {
+          margin-right: 10px;
+        }
 
         .handle {
           top: 0;
           right: 0;
-          padding-left: 24px;
-          bottom: 50px;
+          padding: 0 10px;
           left: 0;
+          background-color: #e9eaea;
         }
 
         .file.input.optional {
