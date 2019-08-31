@@ -345,7 +345,7 @@ body {
         word-break: break-word;
       }
       .box {
-        padding: 3em;
+        padding: 2em 20px;
         margin-bottom: 2em;
       }
       .about-company {
@@ -360,13 +360,26 @@ body {
         .genealogy {
           position: absolute;
           right: 1em;
-          top: 7px;
+          top: 14px;
         }
       }
-      .pictures {
-        img {
-          border: 4px solid rgba(255, 255, 255, 0.8);
-          border-radius: 6px;
+      .gallery {
+        max-width: 41em;
+        margin-top: 2em;
+        .pictures {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-flow: wrap;
+          a {
+            &:not(:last-child) {
+              margin-right: 0.4em;
+            }
+            img {
+              border: 4px solid rgba(255, 255, 255, 0.8);
+              border-radius: 6px;
+            }
+          }
         }
       }
       .dogs-list {
