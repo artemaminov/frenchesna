@@ -15,7 +15,7 @@ ru:
         gender: Пол
         puppy: Щенок
         awards: Награды
-        rip: Архив
+        rip: Архив (собака не отображается в списках)
         father: Отец
         mother: Мать
         genealogy_link: Ссылка на родословную

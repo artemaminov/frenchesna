@@ -36,6 +36,7 @@ ActiveAdmin.register Dog do
     f.inputs 'Детали' do
       f.input :avatar, as: :file, allow_destroy: true, hint: (image_tag(f.object.avatar.file.variant(resize: "100x100").processed) unless f.object.avatar.blank?), input_html: { direct_upload: true, name: "dog[avatar_attributes][file]" }
       f.input :puppy
+      f.input :rip
       f.input :fullname
       f.input :nickname
       f.input :awards
@@ -44,7 +45,6 @@ ActiveAdmin.register Dog do
       f.input :genealogy_link
       f.input :birthdate, as: :datepicker
       f.input :gender
-      f.input :rip
       f.input :about
     end
     f.inputs 'Изображения' do
