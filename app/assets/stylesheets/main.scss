@@ -3,8 +3,6 @@
 
 @media (min-width: 320px) and (max-width: 767px) {
   body {
-    overflow: hidden;
-    min-width: auto;
     .content {
       flex-flow: column;
       .sidebar, .main {
