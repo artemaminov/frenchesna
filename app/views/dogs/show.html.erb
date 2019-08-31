@@ -9,9 +9,9 @@
   <p><%= @dog.about %></p>
 </div>
 <% unless @dog.pictures.empty? %>
-<div class="pictures" data-turbolinks="false">
+<div class="gallery" data-turbolinks="false">
   <h2 class="our-dogs">Фотографии</h2>
-  <div class="picture">
+  <div class="pictures">
     <% @dog.backgroundable.each do |picture| %>
       <%= link_to(
               image_tag(url_for(picture.file.variant(resize: "100x100").processed)),
