@@ -43,6 +43,11 @@
                   }
                 }
               }
+              & ~ ul {
+                display: block;
+                z-index: 1;
+                position: fixed;
+              }
             }
             & ~ ul {
               background-color: #5a83aa;
@@ -79,6 +84,9 @@
                   top: 10px;
                 }
               }
+            }
+            & ~ ul {
+              display: none;
             }
           }
           .descendants {
