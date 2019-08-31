@@ -51,7 +51,6 @@ ActiveAdmin.register Dog do
       f.input :background, as: :radio, collection: f.object.backgroundable.map { |i| [(image_tag i.file.variant(resize: "100x100").processed), i.id] } unless f.object.pictures.blank?
       panel "Управление изображениями", class: 'dragndrop' do
         f.has_many :pictures, sortable: :order, sortable_start: 1, allow_destroy: true, new_record: false, heading: false do |p|
-          # render partial: "dog_photos", locals: { dog: f.object, image: p.object }
           img_class = "dogs-background" if p.object == f.object.background
           img_class = "dogs-avatar" if p.object == f.object.avatar
           p.input :file, hint: image_tag(p.object.file.variant(resize: "100x100").processed, class: img_class)
