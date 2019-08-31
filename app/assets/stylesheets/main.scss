@@ -337,6 +337,12 @@ body {
           top: 7px;
         }
       }
+      .pictures {
+        img {
+          border: 4px solid rgba(255, 255, 255, 0.8);
+          border-radius: 6px;
+        }
+      }
       .dogs-list {
         .item {
           float: left;
