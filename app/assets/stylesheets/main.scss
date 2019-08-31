@@ -343,6 +343,13 @@ body {
       .title {
         margin-bottom: 1em;
         word-break: break-word;
+        .gender {
+          svg {
+            height: 90px;
+            position: relative;
+            top: 13px;
+          }
+        }
       }
       .box {
         padding: 2em 20px;
