@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Alice|Montserrat:400,400i,700&subset=cyrillic');
 @import "variables", "mixins";
 
-@media (min-width: 320px) and (max-width: 767px) {
+@media only screen and (min-width: 320px) and (max-width: 767px) {
   body {
     header {
       .logo {
@@ -106,7 +106,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px)  {
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
   body {
     min-width: auto;
     header {
@@ -152,7 +152,7 @@
   }
 }
 
-@media (min-width: 1024px)  {
+@media only screen and (min-width: 1024px)  {
   body {
     min-width: 1024px;
     header {
