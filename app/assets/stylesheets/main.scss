@@ -334,7 +334,8 @@ body {
         font-size: 1.3em;
         font-style: italic;
         text-transform: uppercase;
-        margin-bottom: .5em;
+        padding-bottom: 4px;
+        display: inline-block;
       }
       p {
         font-size: 1em;
@@ -343,6 +344,9 @@ body {
       .title {
         margin-bottom: 1em;
         word-break: break-word;
+        h2 {
+          border-bottom: 3px solid white;
+        }
         .gender {
           svg {
             height: 90px;
@@ -352,17 +356,19 @@ body {
         }
       }
       .box {
-        padding: 2em 20px;
+        padding: 4em 2em 40px;
         margin-bottom: 2em;
       }
       .about-company {
         background-color: rgba(255, 255, 255, .8);
         border-radius: 6px;
-        max-width: 38em;
         position: relative;
         h2 {
           font-style: normal;
           margin-bottom: 1em;
+        }
+        p {
+          max-width: 38em;
         }
         .genealogy {
           position: absolute;
@@ -371,7 +377,6 @@ body {
         }
       }
       .gallery {
-        max-width: 41em;
         margin-top: 2em;
         .pictures {
           display: flex;
