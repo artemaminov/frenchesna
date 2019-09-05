@@ -1,0 +1,20 @@
+<div class="space"></div>
+<div class="title">
+  <h1>Галлерея</h1>
+</div>
+<div class="about-company box">
+  <p>Здесь собраны все фотографии представленные на сайте</p>
+  <% unless @gallery.empty? %>
+    <div class="gallery" data-turbolinks="false">
+      <div class="pictures">
+        <% @gallery.each do |image| %>
+          <%= link_to(
+                  image_tag(url_for(image.file.variant(resize: "100x100").processed)),
+                  url_for(image.file),
+                  data: {fancybox: 'gallery'}
+              ) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

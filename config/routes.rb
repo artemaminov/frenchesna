@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'gallery', to: 'gallery#index'
   root to: 'dogs#index'
 
   resources :dogs, only: [:index, :show]
