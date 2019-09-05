@@ -296,23 +296,25 @@ body {
             color: inherit;
           }
         }
-        .list {
-          .item {
-            @include mont;
-            font-weight: normal;
-            padding-bottom: .3em;
-            a {
-              span {
-                color: $menu-color;
-                text-shadow: $shadow;
-                display: inline-flex;
-                height: 74px;
-                align-items: center;
+        .submenu {
+          &:not(:last-child) {
+            margin-bottom: 1.5em;
+          }
+          .list {
+            .item {
+              @include mont;
+              font-weight: normal;
+              padding-bottom: .3em;
+              a {
+                span {
+                  color: $menu-color;
+                  text-shadow: $shadow;
+                  display: inline-flex;
+                  height: 74px;
+                  align-items: center;
+                }
               }
             }
-          }
-          &:last-child {
-            margin-bottom: 1.5em;
           }
         }
       }

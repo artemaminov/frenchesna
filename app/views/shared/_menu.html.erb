@@ -1,19 +1,22 @@
 <ul>
-  <li>
+  <li class="submenu">
     <input type="checkbox" id="dogs">
     <label for="dogs" class="title">Собаки</label>
     <ul class="list">
       <%= render partial: "shared/dogs_list", locals: { dogs: dogs } unless dogs.blank? %>
     </ul>
   </li>
-  <li>
+  <li class="submenu">
     <input type="checkbox" id="puppies">
     <label for="puppies" class="title">Щенки</label>
     <ul class="list">
       <%= render partial: "shared/dogs_list", locals: { dogs: puppies } unless puppies.blank? %>
     </ul>
   </li>
-  <li>
+  <li class="submenu">
+    <span class="title"><a href="/gallery">Галлерея</a></span>
+  </li>
+  <li class="submenu">
     <span class="title"><a href="/">Контакты</a></span>
   </li>
 </ul>
