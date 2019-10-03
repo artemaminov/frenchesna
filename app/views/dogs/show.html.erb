@@ -25,7 +25,7 @@
 <% content_for :right_sidebar do %>
   <% if @dog.puppy %>
     <div class="menu">
-      <div class="descendants">
+      <div class="submenu descendants">
         <span class="title">Родители</span>
         <ul class="list">
           <%= render partial: "shared/parents", locals: { dog: @dog } %>
@@ -35,7 +35,7 @@
   <% else %>
     <% unless @dog.kids.blank? %>
       <div class="menu">
-        <div class="descendants">
+        <div class="submenu descendants">
           <span class="title">Потомство</span>
           <ul class="list">
             <%= render partial: "shared/dogs_list", locals: { dogs: @dog.kids, reverse: true } %>

@@ -6,9 +6,9 @@
   <h2>О питомнике</h2>
   <p><%= Preference.about %></p>
 </div>
-<div class="dogs-list">
+<div class="dogs-list menu">
   <h2 class="our-dogs">Наши собаки</h2>
-  <ul>
+  <ul class="submenu">
     <%= render partial: 'shared/dogs_list', locals: { dogs: @dogs } %>
   </ul>
 </div>
@@ -16,7 +16,7 @@
 <% content_for :right_sidebar do %>
 <% unless @puppies.blank? %>
 <div class="menu">
-  <div class="descendants">
+  <div class="submenu descendants">
     <span class="title">Щенки в наличии</span>
     <ul class="list">
       <%= render partial: "shared/dogs_list", locals: { dogs: @puppies, reverse: true } %>

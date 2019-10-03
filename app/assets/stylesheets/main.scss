@@ -269,7 +269,6 @@ body {
   }
   .content {
     display: flex;
-    .sidebar {
       .menu {
         input {
           display: none;
@@ -300,25 +299,21 @@ body {
           &:not(:last-child) {
             margin-bottom: 1.5em;
           }
-          .list {
-            .item {
-              @include mont;
-              font-weight: normal;
-              padding-bottom: .3em;
-              a {
-                span {
-                  color: $menu-color;
-                  text-shadow: $shadow;
-                  display: inline-flex;
-                  height: 74px;
-                  align-items: center;
-                }
+          .item {
+            @include mont;
+            font-weight: normal;
+            padding-bottom: .5em;
+            a {
+              span {
+                color: $menu-color;
+                text-shadow: $shadow;
+                display: inline-flex;
+                align-items: center;
               }
             }
           }
         }
       }
-    }
     .main {
       h1, h2 {
         color: $menu-color;
@@ -401,9 +396,10 @@ body {
           float: left;
           text-align: center;
           .avatar {
-            margin-right: 10px;
+            flex-flow: column;
+            margin-right: 0.6em;
             i {
-              margin: 0;
+              margin: 0 0 10px;
             }
             p {
               color: $menu-color;
