@@ -6,7 +6,7 @@
 <div class="about-company box">
   <h2>О собаке</h2>
   <%= link_to "Родословная", @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "genealogy button" %>
-  <p><%= @dog.about %></p>
+  <p><%= @dog.about.html_safe %></p>
   <% unless @dog.pictures.empty? %>
     <div class="gallery" data-turbolinks="false">
       <div class="pictures">
