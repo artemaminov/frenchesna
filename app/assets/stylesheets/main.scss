@@ -190,7 +190,6 @@
         flex: auto;
         display: flex;
         flex-direction: column;
-        min-height: calc(100vh - 240px);
         .space {
           flex: 1;
         }
@@ -229,58 +228,75 @@ a {
   border-radius: 6px;
 }
 
-body {
-  background: no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  header {
-    position: relative;
+html {
+  height: 100%;
+  body {
+    background: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
-    .logo {
-      background: asset_url('logo.png') no-repeat center center;
-      width: 201px;
-      height: 131px;
-      display: inline-block;
+    header {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      flex-grow: 0;
+      width: 100%;
 
-      a {
-        width: 100%;
-        height: 100%;
+      .logo {
+        background: asset_url('logo.png') no-repeat center center;
+        width: 201px;
+        height: 131px;
+        display: inline-block;
+        flex-shrink: 0;
+
+        a {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .phone, .address {
+        @include alice;
+        right: 0;
+        color: $menu-color;
+        text-shadow: $shadow;
+      }
+
+      .phone {
+        top: 30px;
+        font-size: 3em;
+      }
+
+      .address {
+        top: calc(30px + 1.5em);
+        font-size: 2em;
       }
     }
 
-    .phone, .address {
-      @include alice;
-      right: 0;
-      color: $menu-color;
-      text-shadow: $shadow;
-    }
+    .content {
+      display: flex;
+      flex-grow: 1;
 
-    .phone {
-      top: 30px;
-      font-size: 3em;
-    }
-
-    .address {
-      top: calc(30px + 1.5em);
-      font-size: 2em;
-    }
-  }
-  .content {
-    display: flex;
       .menu {
         input {
           display: none;
+
           & ~ .list {
             max-height: 0;
             overflow: hidden;
             //animation: menuOpen 2s ease-out 0ms 1 reverse forwards running;
           }
+
           &:checked ~ .list {
             animation: menuOpen 2s ease-out 0ms 1 normal forwards running;
           }
         }
+
         .title {
           @include mont;
           font-size: 1.2em;
@@ -291,18 +307,22 @@ body {
           display: block;
           color: $menu-color;
           cursor: pointer;
+
           a {
             color: inherit;
           }
         }
+
         .submenu {
           &:not(:last-child) {
             margin-bottom: 1.5em;
           }
+
           .item {
             @include mont;
             font-weight: normal;
             padding-bottom: .5em;
+
             a {
               span {
                 color: $menu-color;
@@ -314,100 +334,126 @@ body {
           }
         }
       }
-    .main {
-      h1, h2 {
-        color: $menu-color;
-        text-shadow: $shadow;
-      }
-      h1 {
-        @include alice;
-        font-size: 5em;
-        margin-bottom: .1em;
-      }
-      h2, p, a {
-        @include mont;
-      }
-      h2 {
-        font-size: 1.3em;
-        font-style: italic;
-        text-transform: uppercase;
-        padding-bottom: 4px;
-        display: inline-block;
-      }
-      p {
-        font-size: 1em;
-        line-height: 1.7em;
-      }
-      .title {
-        margin-bottom: 1em;
-        word-break: break-word;
+
+      .main {
+        h1, h2 {
+          color: $menu-color;
+          text-shadow: $shadow;
+        }
+
+        h1 {
+          @include alice;
+          font-size: 5em;
+          margin-bottom: .1em;
+        }
+
+        h2, p, a {
+          @include mont;
+        }
+
         h2 {
-          border-bottom: 3px solid white;
+          font-size: 1.3em;
+          font-style: italic;
+          text-transform: uppercase;
+          padding-bottom: 4px;
+          display: inline-block;
         }
-        .gender {
-          svg {
-            height: 90px;
-            position: relative;
-            top: 13px;
-          }
-        }
-      }
-      .box {
-        padding: 4em 2em 40px;
-        margin-bottom: 2em;
-      }
-      .about-company {
-        background-color: rgba(255, 255, 255, .8);
-        border-radius: 6px;
-        position: relative;
-        h2 {
-          font-style: normal;
-          margin-bottom: 1em;
-        }
+
         p {
-          max-width: 38em;
+          font-size: 1em;
+          line-height: 1.7em;
         }
-        .genealogy {
-          position: absolute;
-          right: 1em;
-          top: 14px;
-        }
-      }
-      .gallery {
-        margin-top: 2em;
-        .pictures {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          flex-flow: wrap;
-          a {
-            &:not(:last-child) {
-              margin-right: 0.4em;
+
+        .title {
+          margin-bottom: 1em;
+          word-break: break-word;
+
+          h2 {
+            border-bottom: 3px solid white;
+          }
+
+          .gender {
+            svg {
+              height: 90px;
+              position: relative;
+              top: 13px;
             }
-            img {
-              border: 4px solid rgba(255, 255, 255, 0.8);
-              border-radius: 6px;
+          }
+        }
+
+        .box {
+          padding: 4em 2em 40px;
+          margin-bottom: 2em;
+        }
+
+        .about-company {
+          background-color: rgba(255, 255, 255, .8);
+          border-radius: 6px;
+          position: relative;
+
+          h2 {
+            font-style: normal;
+            margin-bottom: 1em;
+          }
+
+          p {
+            max-width: 38em;
+          }
+
+          .genealogy {
+            position: absolute;
+            right: 1em;
+            top: 14px;
+          }
+        }
+
+        .gallery {
+          margin-top: 2em;
+
+          .pictures {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-flow: wrap;
+
+            a {
+              &:not(:last-child) {
+                margin-right: 0.4em;
+              }
+
+              img {
+                border: 4px solid rgba(255, 255, 255, 0.8);
+                border-radius: 6px;
+              }
+            }
+          }
+        }
+
+        .dogs-list {
+          .item {
+            float: left;
+            text-align: center;
+
+            .avatar {
+              flex-flow: column;
+              margin-right: 0.6em;
+
+              i {
+                margin: 0 0 10px;
+              }
+
+              p {
+                color: $menu-color;
+                text-shadow: $shadow;
+              }
             }
           }
         }
       }
-      .dogs-list {
-        .item {
-          float: left;
-          text-align: center;
-          .avatar {
-            flex-flow: column;
-            margin-right: 0.6em;
-            i {
-              margin: 0 0 10px;
-            }
-            p {
-              color: $menu-color;
-              text-shadow: $shadow;
-            }
-          }
-        }
-      }
+    }
+    footer {
+      flex-shrink: 0;
+      height: 10em;
     }
   }
 }
