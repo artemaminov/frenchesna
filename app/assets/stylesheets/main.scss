@@ -261,6 +261,7 @@ html {
       display: flex;
       flex-direction: row;
       flex-grow: 0;
+      flex-shrink: 0;
       width: 100%;
 
       .logo {
@@ -281,6 +282,7 @@ html {
     .content {
       display: flex;
       flex-grow: 1;
+      flex-shrink: 0;
       width: 100%;
 
       .menu {
