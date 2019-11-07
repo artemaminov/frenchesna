@@ -10,11 +10,4 @@ class DogsController < ApplicationController
     @background = (@dog.background.file unless @dog.background.blank?) || Preference.background
   end
 
-  private
-
-  def get_menu_items
-    @dogs = Dog.adults.alive
-    @puppies = Dog.puppies.alive
-  end
-
 end
