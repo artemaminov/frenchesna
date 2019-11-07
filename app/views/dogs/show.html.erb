@@ -4,8 +4,6 @@
   <h2><%= @dog.fullname %></h2>
 </div>
 <div class="about-company box">
-  <h2>О собаке</h2>
-  <%= link_to "Родословная", @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "genealogy button" %>
   <p><%= @dog.about.html_safe %></p>
   <% unless @dog.pictures.empty? %>
     <div class="gallery" data-turbolinks="false">
@@ -30,6 +28,7 @@
         <ul class="list">
           <%= render partial: "shared/parents", locals: { dog: @dog } %>
         </ul>
+        <%= link_to "Полная родословная", @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "genealogy button item" %>
       </div>
     </div>
   <% else %>
@@ -40,6 +39,7 @@
           <ul class="list">
             <%= render partial: "shared/dogs_list", locals: { dogs: @dog.kids, reverse: true } %>
           </ul>
+          <%= link_to "Полная родословная", @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "genealogy button item" %>
         </div>
       </div>
     <% end %>
