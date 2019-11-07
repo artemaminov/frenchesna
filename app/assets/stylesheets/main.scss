@@ -328,10 +328,13 @@ html {
 
             a {
               span {
-                color: $menu-color;
-                text-shadow: $shadow;
-                display: inline-flex;
-                align-items: center;
+                &.avatar {
+                  color: $menu-color;
+                  text-shadow: $shadow;
+                  display: inline-flex;
+                  align-items: center;
+                  max-width: 16em;
+                }
               }
             }
           }

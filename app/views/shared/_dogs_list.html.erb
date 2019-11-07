@@ -5,11 +5,11 @@
       <% unless local_assigns[:reverse] %>
       <span class="avatar reverse">
         <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file })\"".html_safe unless dog.avatar.blank? %>></i>
-        <span><%= dog.nickname %></span>
+        <span><%= dog.fullname %></span>
       </span>
       <% else %>
       <span class="avatar">
-        <span><%= dog.nickname %></span>
+        <span><%= dog.fullname %></span>
         <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file })\"".html_safe unless dog.avatar.blank? %>></i>
       </span>
       <% end %>
