@@ -196,6 +196,9 @@
         .about-company {
           p {
             column-count: 1;
+            color: white;
+            text-shadow: #4A4A4A 1px 1px 3px;
+            font-size: 1.3em;
           }
         }
       }
@@ -388,14 +391,10 @@ html {
         }
 
         .box {
-          padding: 4em 2em 40px;
           margin-bottom: 2em;
         }
 
         .about-company {
-          background-color: rgba(255, 255, 255, .8);
-          border-radius: 6px;
-          position: relative;
 
           h2 {
             font-style: normal;
