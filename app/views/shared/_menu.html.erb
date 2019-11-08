@@ -1,9 +1,16 @@
 <ul>
   <li class="submenu">
-    <input type="checkbox" id="dogs">
-    <label for="dogs" class="title">Собаки</label>
+    <input type="checkbox" id="females">
+    <label for="females" class="title">Суки</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: dogs } unless dogs.blank? %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.females } unless dogs.blank? %>
+    </ul>
+  </li>
+  <li class="submenu">
+    <input type="checkbox" id="males">
+    <label for="males" class="title">Кобели</label>
+    <ul class="list">
+      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.males } unless dogs.blank? %>
     </ul>
   </li>
   <li class="submenu">
