@@ -7,6 +7,7 @@ ActiveAdmin.register Dog do
     column :nickname
     column :gender
     column :birthdate, as: :datepicker
+    column :litter
     actions
   end
 
@@ -23,12 +24,13 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :genealogy_link, :background_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: []
+  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :genealogy_link, :background_id, :litter_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: [], litter_attributes: [:id, :title, :_destroy]
 
   form do |f|
     within head do
       script src: javascript_path('activestorage.js'), type: "text/javascript"
       script src: javascript_path('admin/direct_uploads.js'), type: "text/javascript"
+      script src: javascript_path('admin/add_litter.js'), type: "text/javascript"
       link rel: "stylesheet", media: "screen", href: stylesheet_path('admin/direct_uploads.css')
       link rel: "stylesheet", media: "screen", href: stylesheet_path('admin/photos_helper.css')
     end
@@ -42,6 +44,13 @@ ActiveAdmin.register Dog do
       f.input :awards
       f.input :mother_id, allow_blank: false, include_hidden: false, collection: Dog.adults.female.not_itself(f.object.id).map { |d| [d.fullname, d.id] }
       f.input :father_id, include_hidden: false, collection: Dog.adults.male.not_itself(f.object.id).map { |d| [d.fullname, d.id] }
+      f.inputs id: 'add-litter' do
+        f.input :litter
+        li do
+          label 'Добавить новый'
+          f.button 'Добавить', type: 'button', onclick: 'console.log(addLitter(this));', 'data-add-litter-state': 'false'
+        end
+      end
       f.input :genealogy_link
       f.input :birthdate, as: :datepicker
       f.input :gender

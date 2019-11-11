@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_11_174614) do
+ActiveRecord::Schema.define(version: 2019_11_08_165551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,8 +74,10 @@ ActiveRecord::Schema.define(version: 2019_06_11_174614) do
     t.bigint "background_id"
     t.bigint "avatar_id"
     t.string "genealogy_link"
+    t.bigint "litter_id"
     t.index ["avatar_id"], name: "index_dogs_on_avatar_id"
     t.index ["background_id"], name: "index_dogs_on_background_id"
+    t.index ["litter_id"], name: "index_dogs_on_litter_id"
   end
 
   create_table "genealogies", force: :cascade do |t|
@@ -93,12 +95,20 @@ ActiveRecord::Schema.define(version: 2019_06_11_174614) do
     t.index ["dog_id"], name: "index_images_on_dog_id"
   end
 
+  create_table "litters", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "preferences", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "about"
   end
 
+  add_foreign_key "dogs", "litters"
   add_foreign_key "genealogies", "dogs", column: "child_id"
   add_foreign_key "genealogies", "dogs", column: "parent_id"
+  add_foreign_key "images", "dogs"
 end

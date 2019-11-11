@@ -1,7 +1,7 @@
 <div class="space"></div>
 <div class="title">
   <h1><%= @dog.nickname %><%= @dog.gender.eql?("female") ? svg_tag("gender-female", class: "gender") : svg_tag("gender-male", class: "gender") %></h1>
-  <h2><%= @dog.fullname %></h2>
+  <h2><%= @dog.fullname %><%= " (Помет #{@dog.litter.title})" unless @dog.litter.blank? %></h2>
 </div>
 <div class="about-company box">
   <p><%= @dog.about.html_safe %></p>
