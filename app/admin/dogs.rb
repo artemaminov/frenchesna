@@ -40,8 +40,8 @@ ActiveAdmin.register Dog do
       f.input :fullname
       f.input :nickname
       f.input :awards
-      f.input :mother_id, allow_blank: false, include_hidden: false, collection: Dog.adults.female.map { |d| [d.fullname, d.id] }
-      f.input :father_id, include_hidden: false, collection: Dog.adults.male.map { |d| [d.fullname, d.id] }
+      f.input :mother_id, allow_blank: false, include_hidden: false, collection: Dog.adults.female.not_itself(f.object.id).map { |d| [d.fullname, d.id] }
+      f.input :father_id, include_hidden: false, collection: Dog.adults.male.not_itself(f.object.id).map { |d| [d.fullname, d.id] }
       f.input :genealogy_link
       f.input :birthdate, as: :datepicker
       f.input :gender

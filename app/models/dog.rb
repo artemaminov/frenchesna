@@ -30,6 +30,7 @@ class Dog < ApplicationRecord
   scope :males, -> { where(gender: 'male') }
   scope :mother, -> { females.first }
   scope :father, -> { males.first }
+  scope :not_itself, ->(self_id) { where.not(id: self_id) }
   scope :parentable, -> { adults.alive }
   scope :backgroundable, -> {  }
 
