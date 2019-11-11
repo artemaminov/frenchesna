@@ -1,4 +1,6 @@
 class Dog < ApplicationRecord
+  validate :kid_to_be_parent
+
   attr_accessor :mother_id, :father_id
 
   belongs_to :avatar, class_name: "Image", optional: true, inverse_of: :dog, dependent: :destroy
@@ -55,6 +57,14 @@ class Dog < ApplicationRecord
 
   def to_param
     "#{id}-#{fullname.parameterize}"
+  end
+
+  private
+
+  def kid_to_be_parent
+    if (kids & parents).count > 0
+      errors.add(:base, "Собака не может быть сама себе родителем")
+    end
   end
   
 end
