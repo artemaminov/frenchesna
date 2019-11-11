@@ -16,8 +16,8 @@ ru:
         puppy: Щенок
         awards: Награды
         rip: Архив (собака не отображается в списках)
-        father: Отец
-        mother: Мать
+        father_id: Отец
+        mother_id: Мать
         litter: Помет
         genealogy_link: Ссылка на родословную
         avatar: Аватар
