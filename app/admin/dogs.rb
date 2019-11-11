@@ -74,8 +74,8 @@ ActiveAdmin.register Dog do
   controller do
 
     def create
-      create! do |format|
-        format.html { redirect_to collection_path }
+      create! do |success, failure|
+        success.html { redirect_to collection_path }
       end
     end
     
@@ -88,8 +88,8 @@ ActiveAdmin.register Dog do
         new_pictures_hash = params[:dog][:pictures].map { |file| {file: file}}
         new_pictures_hash.each_with_index { |picture, index| params[:dog][:pictures_attributes][(last_index + index).to_s] = ActionController::Parameters.new picture }
       end
-      update! do |format|
-        format.html { redirect_to collection_path }
+      update! do |success, failure|
+        success.html { redirect_to collection_path }
       end
     end
 
