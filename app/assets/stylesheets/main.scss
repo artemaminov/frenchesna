@@ -183,6 +183,9 @@
           }
           .descendants {
             text-align: right;
+            .list {
+              margin-bottom: 1.5em;
+            }
           }
         }
       }
