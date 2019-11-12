@@ -7,13 +7,24 @@ $avatar_dimensions: 60px;
     display: inline-block;
     width: $avatar_dimensions;
     height: $avatar_dimensions;
-    border: 6px solid;
+    border: 2px solid;
     border-radius: 40px;
     background: white no-repeat center;
     margin-left: 10px;
     flex-shrink: 0;
+    position: relative;
     &.stub {
       background-image: asset_url("avatar.png");
+    }
+    &:before {
+      display: block;
+      height: 25px;
+      width: 25px;
+      content: "";
+      border-radius: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
   &.reverse {
@@ -24,15 +35,15 @@ $avatar_dimensions: 60px;
   }
   .male {
     border-color: $male-color;
-    i {
-
+    &:before {
+      background-color: $male-color;
     }
   }
 
   .female {
     border-color: $female-color;
-    i {
-
+    &:before {
+      background-color: $female-color;
     }
   }
 }
