@@ -333,7 +333,7 @@ html {
               span {
                 &.avatar {
                   color: $menu-color;
-                  text-shadow: $shadow;
+                  text-shadow: $shadow, $shadow;
                   display: inline-flex;
                   align-items: center;
                   max-width: 16em;
