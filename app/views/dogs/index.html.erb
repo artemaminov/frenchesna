@@ -7,14 +7,12 @@
 </div>
 
 <% content_for :right_sidebar do %>
-<% unless @puppies.blank? %>
 <div class="menu">
   <div class="submenu descendants">
-    <span class="title">Щенки в наличии</span>
-    <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: @puppies, reverse: true } %>
-    </ul>
+    <span class="title">Щенки на продажу</span>
+      <ul class="list">
+        <%= render partial: "shared/dogs_list", locals: { dogs: @puppies.alive, reverse: true } %>
+      </ul>
   </div>
 </div>
-<% end %>
 <% end %>

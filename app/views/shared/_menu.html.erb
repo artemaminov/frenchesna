@@ -3,28 +3,28 @@
     <input type="checkbox" id="females">
     <label for="females" class="title">Суки</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.females } unless dogs.blank? %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.females } %>
     </ul>
   </li>
   <li class="submenu">
     <input type="checkbox" id="males">
     <label for="males" class="title">Кобели</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.males } unless dogs.blank? %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.males } %>
     </ul>
   </li>
   <li class="submenu">
     <input type="checkbox" id="puppies">
     <label for="puppies" class="title">Щенки</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.alive } unless puppies.alive.blank? %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.alive } %>
     </ul>
   </li>
   <li class="submenu">
     <input type="checkbox" id="graduate-puppies">
     <label for="graduate-puppies" class="title">Выпускники</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.archived } unless puppies.archived.blank? %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.archived } %>
     </ul>
   </li>
   <li class="submenu">
