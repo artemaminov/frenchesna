@@ -299,7 +299,7 @@ html {
           }
 
           &:checked ~ .list {
-            animation: menuOpen 2s ease-out 0ms 1 normal forwards running;
+            animation: menuOpen 1s ease-out 0ms 1 normal forwards running;
           }
         }
 
