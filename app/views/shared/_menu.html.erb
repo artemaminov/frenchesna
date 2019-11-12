@@ -17,7 +17,14 @@
     <input type="checkbox" id="puppies">
     <label for="puppies" class="title">Щенки</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: puppies } unless puppies.blank? %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.alive } unless puppies.alive.blank? %>
+    </ul>
+  </li>
+  <li class="submenu">
+    <input type="checkbox" id="graduate-puppies">
+    <label for="graduate-puppies" class="title">Выпускники</label>
+    <ul class="list">
+      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.archived } unless puppies.archived.blank? %>
     </ul>
   </li>
   <li class="submenu">

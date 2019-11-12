@@ -28,6 +28,7 @@ class Dog < ApplicationRecord
   validates_inclusion_of :rip, in: [true, false]
 
   scope :alive, -> { where(rip: false) }
+  scope :archived, -> { where(rip: true) }
   scope :puppies, -> { where(puppy: true) }
   scope :adults, -> { where(puppy: false) }
   scope :females, -> { where(gender: 'female') }
