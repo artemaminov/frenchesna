@@ -1,30 +1,30 @@
 <ul>
   <li class="submenu">
-    <input type="checkbox" id="females">
+    <input type="checkbox" id="females" <%= current_category? dogs.female, @dog %>>
     <label for="females" class="title">Суки</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.females } %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.females, current_dog: @dog } %>
     </ul>
   </li>
   <li class="submenu">
-    <input type="checkbox" id="males">
+    <input type="checkbox" id="males" <%= current_category? dogs.males, @dog %>>
     <label for="males" class="title">Кобели</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.males } %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: dogs.males, current_dog: @dog } %>
     </ul>
   </li>
   <li class="submenu">
-    <input type="checkbox" id="puppies">
+    <input type="checkbox" id="puppies" <%= current_category? puppies.alive, @dog %>>
     <label for="puppies" class="title">Щенки</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.alive } %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.alive, current_dog: @dog } %>
     </ul>
   </li>
   <li class="submenu">
-    <input type="checkbox" id="graduate-puppies">
+    <input type="checkbox" id="graduate-puppies" <%= current_category? puppies.archived, @dog %>>
     <label for="graduate-puppies" class="title">Выпускники</label>
     <ul class="list">
-      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.archived } %>
+      <%= render partial: "shared/dogs_list", locals: { dogs: puppies.archived, current_dog: @dog } %>
     </ul>
   </li>
   <li class="submenu">
