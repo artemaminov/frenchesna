@@ -7,7 +7,7 @@
     height: $avatar_dimensions;
     border: 2px solid;
     border-radius: 40px;
-    background: white no-repeat center;
+    background: $avatar_background_color no-repeat center;
     margin-left: 10px;
     flex-shrink: 0;
     position: relative;
