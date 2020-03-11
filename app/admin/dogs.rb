@@ -24,7 +24,7 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :genealogy_link, :background_id, :litter_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: [], litter_attributes: [:id, :title, :_destroy]
+  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :genealogy_link, :background_id, :litter_id, :avatar_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: [], litter_attributes: [:id, :title, :_destroy]
 
   form do |f|
     within head do
@@ -89,13 +89,13 @@ ActiveAdmin.register Dog do
     end
     
     def update
-      unless params[:dog][:pictures].blank?
-        if params[:dog][:pictures_attributes].blank?
-          params[:dog][:pictures_attributes] = {}
+      unless permitted_params[:dog][:pictures].blank?
+        if permitted_params[:dog][:pictures_attributes].blank?
+          permitted_params[:dog][:pictures_attributes] = {}
         end
-        last_index = params[:dog][:pictures_attributes].keys.last.to_i
-        new_pictures_hash = params[:dog][:pictures].map { |file| {file: file}}
-        new_pictures_hash.each_with_index { |picture, index| params[:dog][:pictures_attributes][(last_index + index).to_s] = ActionController::Parameters.new picture }
+        last_index = permitted_params[:dog][:pictures_attributes].keys.last.to_i
+        new_pictures_hash = permitted_params[:dog][:pictures].map { |file| {file: file}}
+        new_pictures_hash.each_with_index { |picture, index| permitted_params[:dog][:pictures_attributes][(last_index + index).to_s] = ActionController::Parameters.new picture }
       end
       update! do |success, failure|
         success.html { redirect_to collection_path }
