@@ -39,3 +39,6 @@ ru:
     errors:
       messages:
         record_invalid: Отсутствует запись
+  nullify_orphaned: Удалить потерянные записи
+  references_fixed: Мусор удален
+  sure?: Уверены?
