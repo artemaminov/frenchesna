@@ -6,7 +6,7 @@ ActiveAdmin.register Dog do
     column :fullname
     column :nickname
     column :gender
-    column :birthdate, as: :datepicker
+    column :birthdate
     column :litter
     actions
   end
@@ -17,7 +17,7 @@ ActiveAdmin.register Dog do
       row :fullname
       row :nickname
       row :awards
-      row :birthdate, as: :datepicker
+      row :birthdate
       row :gender
       row :rip
       row :about
