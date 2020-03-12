@@ -13,6 +13,9 @@
                   url_for(image.file),
                   data: {fancybox: 'gallery'}
               ) %>
+          <% rescue %>
+        <p>Проблема загрузки изображениий</p>
+          <% break %>
         <% end %>
       </div>
     </div>
