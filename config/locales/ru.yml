@@ -29,13 +29,14 @@ ru:
         about: О питомнике
     models:
       admin_user: Пользователи
-      litter: Помет
-      preference  : Настройки
       dog:
         one: Собаку
         few: Собаки
         many: Собак
         other: Собаки
+      image: Изображения
+      litter: Помет
+      preference  : Настройки
     errors:
       messages:
         record_invalid: Отсутствует запись
