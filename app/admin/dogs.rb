@@ -24,7 +24,7 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :genealogy_link, :background_id, :litter_id, :avatar_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_ids: [], pictures: [], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: [], litter_attributes: [:id, :title, :_destroy]
+  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :genealogy_link, :background_id, :litter_id, avatar_attributes: [:id, :dog_id, :file, :_destroy], pictures_ids: [], pictures: [], pictures_attributes: [:id, :dog_id, :order, :file, :_destroy], child_genealogies_attributes: [:id, :parent_id, :child_id], parents_genealogies_attributes: [:id, :parent_id, :child_id], parents_ids: [], kids_ids: [], litter_attributes: [:id, :title, :_destroy]
 
   form do |f|
     within head do
@@ -76,37 +76,25 @@ ActiveAdmin.register Dog do
   end
 
   before_update do
-    upload_avatar
-    add_parents
+    # byebug
+
   end
 
   controller do
 
     def create
+      # TODO Не верный permitted_params, содержит pictures[:file]
+      modify_pictures_params
       create! do |success, failure|
         success.html { redirect_to collection_path }
       end
     end
-    
+
     def update
-      unless permitted_params[:dog][:pictures].blank?
-        if permitted_params[:dog][:pictures_attributes].blank?
-          last_index = 0
-          params[:dog][:pictures_attributes] = {}
-        else
-          last_index = permitted_params[:dog][:pictures_attributes].keys.count
-        end
-        new_pictures_hash = permitted_params[:dog][:pictures].map { |file| {file: file}}
-        new_pictures_hash.each_with_index do |file, index|
-          # byebug
-          picture_params = ActionController::Parameters.new(file)
-          picture_params.permit :file
-          picture = resource.pictures.create file
-          params[:dog][:pictures_attributes][(last_index + index).to_s] = picture.attributes
-          params[:dog].delete :pictures
-          resource.save
-        end
-      end
+      # byebug
+      upload_avatar
+      add_parents
+      modify_pictures_params
       update! do |success, failure|
         success.html { redirect_to collection_path }
       end
@@ -114,17 +102,37 @@ ActiveAdmin.register Dog do
 
     private
 
+    def modify_pictures_params
+      unless permitted_params[:dog][:pictures].blank?
+        if permitted_params[:dog][:pictures_attributes].blank?
+          last_index = 0
+          params[:dog][:pictures_attributes] = {}
+        else
+          last_index = permitted_params[:dog][:pictures_attributes].keys.count
+        end
+        pictures_params = params[:dog].delete :pictures
+        pictures_hash = pictures_params.map { |file| {file: file}}
+        pictures_hash.each_with_index do |file, index|
+          # byebug
+          picture_params = ActionController::Parameters.new(file)
+          picture_params.permit :file
+          # picture = resource.pictures.create file
+          params[:dog][:pictures_attributes][(last_index + index).to_s] = picture_params
+          # resource.save
+        end
+      end
+    end
+
     def upload_avatar
-      # byebug
       unless permitted_params[:dog][:avatar_attributes].blank?
-        existent_avatar = resource.avatar
-        unless existent_avatar.blank?
+        unless resource.avatar.blank?
           resource.avatar.file.purge
-          resource.avatar.destroy
+          # resource.avatar.destroy
         end
         avatar = resource.create_avatar dog: resource, file: permitted_params[:dog][:avatar_attributes]
-        # resource.avatar = avatar
-        resource.avatar.file.attach permitted_params[:dog][:avatar_attributes][:file]
+        avatar.file.attach permitted_params[:dog][:avatar_attributes][:file]
+        permitted_params[:dog].delete(:avatar_attributes)
+        resource.avatar = avatar
         resource.save
       end
     end

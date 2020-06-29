@@ -3,8 +3,8 @@ class Dog < ApplicationRecord
 
   attr_accessor :mother_id, :father_id
 
-  belongs_to :avatar, class_name: "Image", optional: true, inverse_of: :dog
-  belongs_to :background, class_name: "Image", optional: true, inverse_of: :dog
+  belongs_to :avatar, class_name: "Image", optional: true, dependent: :destroy
+  belongs_to :background, class_name: "Image", optional: true, dependent: :destroy
   belongs_to :litter, optional: true
 
   has_many :child_genealogies, class_name: "Genealogy", foreign_key: "parent_id", dependent: :destroy
