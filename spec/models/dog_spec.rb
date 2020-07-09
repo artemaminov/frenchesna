@@ -9,7 +9,7 @@ RSpec.describe Dog, type: :model do
     it { is_expected.to validate_presence_of :fullname }
     it { is_expected.to validate_presence_of :birthdate }
     it { is_expected.to validate_presence_of :about }
-    it { is_expected.to validate_presence_of :award_point }
+    it { is_expected.to validate_presence_of :awards }
     it { is_expected.to validate_inclusion_of(:puppy).in_array([true, false]) }
     it { is_expected.to validate_inclusion_of(:rip).in_array([true, false]) }
     it { is_expected.to define_enum_for(:gender).with_values(male: 1, female: 0) }
