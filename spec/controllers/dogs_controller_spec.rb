@@ -6,6 +6,7 @@ RSpec.describe DogsController, type: :controller do
 
   describe "GET #index" do
     let!(:dogs) { create_list :dog, 5 }
+    let!(:preferences) { create :preference }
 
     it "returns http success" do
       get :index

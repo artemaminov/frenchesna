@@ -5,7 +5,7 @@ FactoryBot.define do
     nickname { Faker::Name.first_name }
     birthdate { Faker::Date.birthday(1, 10) }
     about { Faker::Lorem.paragraph(2) }
-    award_point { Faker::Number.between(1, 5) }
+    awards { Faker::Marketing.buzzwords }
     rip { Faker::Boolean.boolean }
     gender { Faker::Number.between(0, 1) }
     puppy { Faker::Boolean.boolean }
@@ -21,14 +21,20 @@ FactoryBot.define do
       transient {
         images_count { 1 }
       }
-
       after(:create) do |dog, evaluator|
         build_list(:image, evaluator.images_count, dog: dog) do #Why order is empty
-          dog.pictures.create.file.attach(FilesTestHelper.jpg)
+          # dog.pictures.create.file.attach(FilesTestHelper.jpg)
+          dog.pictures << create(:image, dog: dog)
           dog.background = dog.pictures.first
         end
       end
+    end
 
+    trait :with_parents do
+      after(:build) do |dog, e|
+        dog.mother = create(:dog, kids: dog)
+        dog.father = create(:dog, kids: dog)
+      end
     end
 
   end

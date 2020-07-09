@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Admin::DogsController, type: :controller do
-
   render_views
 
-  let(:adminuser) { create :admin_user }
-  let(:dog) { create :dog }
+  let!(:adminuser) { create :admin_user }
+  let!(:dog) { create :dog }
+  let!(:preference) { create :preference}
   # let(:page) { Capybara::Node::Simple.new(response.body) }
 
   before(:each) {
@@ -18,15 +18,15 @@ RSpec.describe Admin::DogsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
     it "contains dogs info" do
-      dog
       get :index
+      expect(response.body).to have_content(dog.puppy ? "Да" : "Нет")
       expect(response.body).to have_content(dog.fullname)
       expect(response.body).to have_content(dog.nickname)
-      expect(response.body).to have_content(dog.award_point)
-      expect(response.body).to have_content(dog.mother.id)
-      expect(response.body).to have_content(dog.father.id)
-      # expect(response.body).to have_content(dog.birthdate)
       expect(response.body).to have_content(dog.gender)
+      # expect(response.body).to have_content(dog.birthdate.to_s)
+      # expect(response.body).to have_content(dog.awards)
+      # expect(response.body).to have_content(dog.mother.name)
+      # expect(response.body).to have_content(dog.father.name)
       # expect(response.body).to have_content(dog.rip)
       # expect(response.body).to have_content(dog.about)
     end
