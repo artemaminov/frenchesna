@@ -40,6 +40,8 @@ ru:
     errors:
       messages:
         record_invalid: Отсутствует запись
+  content:
+    address: г. Пушкино, Московской области
   nullify_orphaned: Удалить потерянные записи
   references_fixed: Мусор удален
   sure?: Уверены?
