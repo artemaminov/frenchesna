@@ -297,14 +297,16 @@ html {
         input {
           display: none;
 
-          & ~ .list {
+          & ~ .scroller {
             max-height: 0;
-            overflow: hidden;
+            //overflow: hidden;
+            overflow-y: scroll;
+            //height: 400px;
             //animation: menuOpen 2s ease-out 0ms 1 reverse forwards running;
           }
 
-          &:checked ~ .list {
-            animation: menuOpen 1s ease-out 0ms 1 normal forwards running;
+          &:checked ~ .scroller {
+            animation: menuOpen .5s ease-out 0ms 1 normal forwards running;
           }
         }
 
@@ -327,12 +329,14 @@ html {
         .submenu {
           &:not(:last-child) {
             margin-bottom: 1.5em;
+            max-height: 440px;
+            overflow: hidden;
           }
 
           .item {
             @include mont;
             font-weight: normal;
-            padding-bottom: .5em;
+            padding-bottom: 13px;
 
             a {
               span {
@@ -491,6 +495,6 @@ html {
     max-height: 0;
   }
   to {
-    max-height: 100vh;
+    max-height: 400px;
   }
 }
