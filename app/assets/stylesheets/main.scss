@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Alice|Montserrat:400,400i,700&subset=cyrillic');
-@import "variables", "mixins";
+@import "variables", "mixins", "scrollbar";
 
 a[href^=tel] { color: inherit; text-decoration: none; }
 ul { direction:ltr; }

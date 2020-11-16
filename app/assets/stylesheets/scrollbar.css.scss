@@ -1,0 +1,31 @@
+html {
+  --scrollbarBG: #fff0f;
+  --thumbBG: #ffffff;
+}
+body, .scroller {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+body, .scroller {
+  ::-webkit-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  }
+}
+body, .scroller {
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+  }
+}
+body, .scroller {
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG) ;
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+  }
+}
+.scroller .list {
+  padding-left: 10px;
+    border-left: 1px solid var(--thumbBG);
+}
