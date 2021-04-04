@@ -330,14 +330,12 @@ html {
 
         .breed__title {
           @include mont;
-          font-size: .8em;
+          font-size: .6em;
           font-weight: bold;
           text-transform: uppercase;
-          text-shadow: $shadow;
-          padding-bottom: .5em;
           display: block;
           color: $menu-color;
-          cursor: pointer;
+          padding-top: .5em;
         }
 
         .submenu {
