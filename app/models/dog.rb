@@ -38,6 +38,10 @@ class Dog < ApplicationRecord
   scope :not_itself, ->(self_id) { where.not(id: self_id) }
   scope :parentable, -> { adults.alive }
 
+  scope :sort_by_breed, -> { joins(:breed).order('breeds.order ASC') }
+  scope :sort_by_name, -> { order('fullname ASC') }
+  scope :sort_by_birth, -> { order('birthdate DESC') }
+
   def mother_id
     m = parents.female.first
     return m.id unless m.blank?
