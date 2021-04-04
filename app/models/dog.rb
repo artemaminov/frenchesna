@@ -1,25 +1,24 @@
 class Dog < ApplicationRecord
   validate :kid_to_be_parent
 
-  attr_accessor :mother_id, :father_id
+  attr_accessor :mother_id, :father_id, :viewable_id
 
-  belongs_to :avatar, class_name: "Image", optional: true, dependent: :destroy
-  belongs_to :background, class_name: "Image", optional: true, dependent: :destroy
-  belongs_to :litter, optional: true
+  has_one :avatar, -> { where viewable_type_scope: 'Avatar' }, class_name: "Image", dependent: :destroy, foreign_key: :viewable_id, inverse_of: :viewable, as: :viewable
+  has_one :background, -> { where viewable_type_scope: 'Background' }, class_name: "Image", dependent: :destroy, foreign_key: :viewable_id, inverse_of: :viewable, as: :viewable
+  has_many :gallery_pictures, -> { where viewable_type_scope: 'Gallery' }, class_name: "Image", dependent: :destroy, foreign_key: :viewable_id, inverse_of: :viewable, as: :viewable
+  has_many :pictures, class_name: "Image", dependent: :destroy, foreign_key: :viewable_id, inverse_of: :viewable, as: :viewable
 
   has_many :child_genealogies, class_name: "Genealogy", foreign_key: "parent_id", dependent: :destroy
   has_many :parent_genealogies, class_name: "Genealogy", foreign_key: "child_id", dependent: :destroy
   has_many :parents, through: :parent_genealogies, source: :parent
   has_many :kids, through: :child_genealogies, source: :child
 
+  belongs_to :litter, optional: true
   # , ->(dog) { unscope(:joins).joins('INNER JOIN "genealogies" ON "dogs"."id" = "genealogies"."child_id" WHERE "genealogies"."father_id" = "dog"."id" OR "genealogies"."mother_id" = "dog"."id"').where('"genealogies"."father_id" = "dog"."id" OR "genealogies"."mother_id" = "dog"."id"') }
   # has_many :genealogies, foreign_key: :father
 
-  has_many :pictures, class_name: "Image", dependent: :destroy
-
-  accepts_nested_attributes_for :avatar, :pictures, allow_destroy: true
-  accepts_nested_attributes_for :kids, :parents, :child_genealogies, :parent_genealogies
-  accepts_nested_attributes_for :litter
+  accepts_nested_attributes_for :avatar, :background, :gallery_pictures, :pictures, allow_destroy: true
+  accepts_nested_attributes_for :kids, :parents, :child_genealogies, :parent_genealogies, :litter
 
   enum gender: { male: 1, female: 0 }
 
