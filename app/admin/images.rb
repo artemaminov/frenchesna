@@ -21,13 +21,19 @@ config.paginate = false
       para "Из них, аватарок #{avatars}"
       para "Из них, аватарок потеряно #{avatars_lost.length}"
       div do
-        link_to t(:nullify_orphaned), nullify_orphan_records_admin_images_path(type: 'avatar', dog: avatars_lost), method: :put, data: { confirm: t(:sure?) }
+        link_to t(:nullify_orphaned), nullify_orphan_records_admin_images_path(type: 'avatar', image: avatars_lost), method: :put, data: { confirm: t(:sure?) }
+      end
+      br
+      para "Из них, фоновых #{backgrounds}"
+      para "Из них, фоновых потеряно #{backgrounds_lost.length}"
+      div do
+        link_to t(:nullify_orphaned), nullify_orphan_records_admin_images_path(type: 'background', image: backgrounds_lost), method: :put, data: { confirm: t(:sure?) }
       end
       br
       para "Из них, фото #{photos}"
       para "Без обратной связи с таблицей собак #{no_reverse_reference.length}"
       div do
-        link_to no_reverse_reference, data: { confirm: t(:sure?) }
+        link_to no_reverse_reference, '#'
       end
       para "Мусор"
       div do
@@ -36,12 +42,6 @@ config.paginate = false
       # div do
       #   para no_reverse_reference - orphan_records
       # end
-      br
-      para "Из них, фоновых #{backgrounds}"
-      para "Из них, фоновых потеряно #{backgrounds_lost.length}"
-      div do
-        link_to t(:nullify_orphaned), nullify_orphan_records_admin_images_path(type: 'background', dog: backgrounds_lost), method: :put, data: { confirm: t(:sure?) }
-      end
     end
   end
 
@@ -69,7 +69,7 @@ config.paginate = false
       type = params[:type]
       case type
       when 'avatar', 'background'
-        Dog.where(id: params[:dog]).update_all("#{type}_id": nil)
+        Image.where(id: params[:image]).delete_all
       else
         return false
       end

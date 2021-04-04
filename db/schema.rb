@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_08_165551) do
+ActiveRecord::Schema.define(version: 2021_04_04_120154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 2019_11_08_165551) do
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 2019_11_08_165551) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", precision: 6, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_165551) do
     t.text "metadata"
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: 6, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 2019_11_08_165551) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
@@ -70,13 +70,9 @@ ActiveRecord::Schema.define(version: 2019_11_08_165551) do
     t.integer "gender", default: 0
     t.text "awards"
     t.boolean "puppy", default: true
-    t.boolean "rip", default: true
-    t.bigint "background_id"
-    t.bigint "avatar_id"
+    t.boolean "rip", default: false
     t.string "genealogy_link"
     t.bigint "litter_id"
-    t.index ["avatar_id"], name: "index_dogs_on_avatar_id"
-    t.index ["background_id"], name: "index_dogs_on_background_id"
     t.index ["litter_id"], name: "index_dogs_on_litter_id"
   end
 
@@ -88,25 +84,27 @@ ActiveRecord::Schema.define(version: 2019_11_08_165551) do
   end
 
   create_table "images", force: :cascade do |t|
-    t.integer "dog_id"
-    t.integer "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["dog_id"], name: "index_images_on_dog_id"
+    t.integer "order", default: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "viewable_id"
+    t.string "viewable_type"
+    t.string "viewable_type_scope"
   end
 
   create_table "litters", force: :cascade do |t|
     t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "preferences", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.text "about"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "dogs", "litters"
   add_foreign_key "genealogies", "dogs", column: "child_id"
   add_foreign_key "genealogies", "dogs", column: "parent_id"
