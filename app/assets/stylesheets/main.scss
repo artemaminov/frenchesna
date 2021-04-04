@@ -366,6 +366,8 @@ html {
       }
 
       .main {
+        flex-shrink: 10;
+        
         h1, h2 {
           color: $menu-color;
           text-shadow: $shadow;
