@@ -1,5 +1,6 @@
 class Image < ApplicationRecord
-  belongs_to :dog
+  belongs_to :viewable, polymorphic: true
+
   has_one_attached :file
 
   scope :join_dogs_on_ab, -> { joins('LEFT JOIN "dogs" ON "dogs"."avatar_id" = "images"."id" OR "dogs"."background_id" = "images"."id"') }
