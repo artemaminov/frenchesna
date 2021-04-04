@@ -5,23 +5,26 @@
     </a>
   </li>
 <% else %>
+  <% first_breed = dogs.first.breed %>
+  <span class="breed__title"><%= first_breed.title %></span>
   <% dogs.each do |dog| %>
-  <li class="item">
-    <a href="<%= dog_path dog %>">
-      <div>
-        <% unless local_assigns[:reverse] %>
+    <span class="breed__title"><%= dog.breed.title if first_breed != dog.breed %></span>
+    <li class="item">
+      <a href="<%= dog_path dog %>">
+        <div>
+          <% unless local_assigns[:reverse] %>
         <span class="avatar reverse">
           <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file })\"".html_safe unless dog.avatar.blank? %>></i>
           <span><%= dog.fullname %></span>
         </span>
-        <% else %>
+          <% else %>
         <span class="avatar">
           <span><%= dog.fullname %></span>
           <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file })\"".html_safe unless dog.avatar.blank? %>></i>
         </span>
-        <% end %>
-      </div>
-    </a>
-  </li>
+          <% end %>
+        </div>
+      </a>
+    </li>
   <% end %>
 <% end %>

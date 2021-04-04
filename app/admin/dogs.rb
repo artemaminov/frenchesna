@@ -2,6 +2,7 @@ ActiveAdmin.register Dog do
 
   index do
     # selectable_column
+    column :breed
     column :puppy
     column :fullname
     column :nickname
@@ -24,7 +25,7 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :genealogy_link, :litter_id, avatar_attributes: [:id, :file, :_destroy], background_attributes: [:id], gallery_pictures_attributes: [:id, :file, :order, :_destroy], pictures_attributes: [:id, :order, :_destroy], litter_attributes: [:id, :title, :_destroy]
+  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :breed_id, :genealogy_link, :litter_id, avatar_attributes: [:id, :file, :_destroy], background_attributes: [:id], gallery_pictures_attributes: [:id, :file, :order, :_destroy], pictures_attributes: [:id, :order, :_destroy], litter_attributes: [:id, :title, :_destroy]
 
   form do |f|
     within head do
@@ -37,11 +38,13 @@ ActiveAdmin.register Dog do
     f.semantic_errors *f.object.errors.keys
     f.inputs 'Детали' do
       f.input :avatar, as: :file, allow_destroy: true, hint: (image_tag(f.object.avatar.file.variant(resize: "100x100")) unless f.object.avatar.blank?), input_html: { direct_upload: true, name: "dog[avatar_attributes][file]" }
+
       f.input :puppy
       f.input :rip
       f.input :fullname
       f.input :nickname
       f.input :awards
+      f.input :breed
       f.input :mother_id, allow_blank: false, include_hidden: false, collection: Dog.adults.female.not_itself(f.object.id).map { |d| [d.fullname, d.id] }
       f.input :father_id, include_hidden: false, collection: Dog.adults.male.not_itself(f.object.id).map { |d| [d.fullname, d.id] }
       f.inputs id: 'add-litter' do

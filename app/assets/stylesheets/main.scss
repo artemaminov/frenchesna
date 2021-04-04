@@ -328,6 +328,18 @@ html {
           }
         }
 
+        .breed__title {
+          @include mont;
+          font-size: .8em;
+          font-weight: bold;
+          text-transform: uppercase;
+          text-shadow: $shadow;
+          padding-bottom: .5em;
+          display: block;
+          color: $menu-color;
+          cursor: pointer;
+        }
+
         .submenu {
           &:not(:last-child) {
             margin-bottom: 1.5em;
