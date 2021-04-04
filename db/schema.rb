@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_120154) do
+ActiveRecord::Schema.define(version: 2021_04_04_180122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2021_04_04_120154) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "breeds", force: :cascade do |t|
+    t.string "title"
+    t.integer "order", default: 1
+    t.text "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dogs", force: :cascade do |t|
     t.string "fullname"
     t.string "nickname"
@@ -73,6 +81,8 @@ ActiveRecord::Schema.define(version: 2021_04_04_120154) do
     t.boolean "rip", default: false
     t.string "genealogy_link"
     t.bigint "litter_id"
+    t.bigint "breed_id"
+    t.index ["breed_id"], name: "index_dogs_on_breed_id"
     t.index ["litter_id"], name: "index_dogs_on_litter_id"
   end
 

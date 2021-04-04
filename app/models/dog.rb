@@ -13,12 +13,13 @@ class Dog < ApplicationRecord
   has_many :parents, through: :parent_genealogies, source: :parent
   has_many :kids, through: :child_genealogies, source: :child
 
+  belongs_to :breed
   belongs_to :litter, optional: true
   # , ->(dog) { unscope(:joins).joins('INNER JOIN "genealogies" ON "dogs"."id" = "genealogies"."child_id" WHERE "genealogies"."father_id" = "dog"."id" OR "genealogies"."mother_id" = "dog"."id"').where('"genealogies"."father_id" = "dog"."id" OR "genealogies"."mother_id" = "dog"."id"') }
   # has_many :genealogies, foreign_key: :father
 
   accepts_nested_attributes_for :avatar, :background, :gallery_pictures, :pictures, allow_destroy: true
-  accepts_nested_attributes_for :kids, :parents, :child_genealogies, :parent_genealogies, :litter
+  accepts_nested_attributes_for :kids, :parents, :child_genealogies, :parent_genealogies, :litter, :breed
 
   enum gender: { male: 1, female: 0 }
 

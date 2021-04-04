@@ -11,6 +11,7 @@ ru:
         fullname: Полное имя
         nickname: Кличка
         birthdate: Дата рождения
+        breed: Порода
         about: О собаке
         gender: Пол
         puppy: Щенок
@@ -29,6 +30,7 @@ ru:
         about: О питомнике
     models:
       admin_user: Пользователи
+      breed: Породы
       dog:
         one: Собаку
         few: Собаки
