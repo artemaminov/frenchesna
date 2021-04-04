@@ -10,7 +10,7 @@
       <div class="pictures">
         <% @dog.gallery_pictures.each do |picture| %>
           <%= link_to(
-                  image_tag(url_for(picture.file.variant(resize: "100x100").processed)),
+                  image_tag(url_for(picture.file.variant(resize: "185x185").processed)),
                   url_for(picture.file),
                   data: {fancybox: 'gallery'}
               ) %>
