@@ -36,7 +36,6 @@ class Dog < ApplicationRecord
   scope :father, -> { males.first }
   scope :not_itself, ->(self_id) { where.not(id: self_id) }
   scope :parentable, -> { adults.alive }
-  scope :backgroundable, -> {  }
 
   def mother_id
     m = parents.female.first
@@ -51,8 +50,7 @@ class Dog < ApplicationRecord
   end
 
   def backgroundable
-    return pictures.where.not(id: avatar.id) unless avatar.blank?
-    pictures
+    pictures.where.not(viewable_type_scope: 'Avatar')
   end
 
   def to_param
@@ -63,8 +61,8 @@ class Dog < ApplicationRecord
 
   def kid_to_be_parent
     if (kids & parents).count > 0
-      errors.add(:base, "Собака не может быть сама себе родителем")
+      errors.add(:base, "У собаки не может быть детей одновременно являющимися ее родителями!")
     end
   end
-  
+
 end

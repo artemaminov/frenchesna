@@ -5,10 +5,10 @@
 </div>
 <div class="about-company box">
   <p><%= @dog.about.html_safe %></p>
-  <% unless @dog.pictures.empty? %>
+  <% unless @dog.gallery_pictures.empty? %>
     <div class="gallery" data-turbolinks="false">
       <div class="pictures">
-        <% @dog.backgroundable.each do |picture| %>
+        <% @dog.gallery_pictures.each do |picture| %>
           <%= link_to(
                   image_tag(url_for(picture.file.variant(resize: "100x100").processed)),
                   url_for(picture.file),
