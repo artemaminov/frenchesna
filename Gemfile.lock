@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/Rubikal/activeadmin-globalize.git
+  revision: fbef294111e05ecf5763bd97cf46b5d5c3dddc8a
+  specs:
+    activeadmin-globalize (1.0.0.pre)
+      activeadmin (>= 1.0, < 3.0)
+      globalize (>= 3.1.0, <= 6.0)
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: d74e4223458f8ef907f571735052a01c0e097258
   branch: master
@@ -328,6 +336,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  activeadmin-globalize!
   bootsnap (>= 1.1.0)
   byebug
   capistrano (~> 3.10)

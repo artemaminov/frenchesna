@@ -1,4 +1,8 @@
 en:
+  active_admin:
+    globalize:
+      language:
+        ru: "Русский"
   content:
-    address: Pushkino city, Moscow Oblast
+    address: "Pushkino city, Moscow Oblast"
 

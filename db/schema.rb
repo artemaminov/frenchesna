@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_180122) do
+ActiveRecord::Schema.define(version: 2021_04_05_092909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,12 +62,36 @@ ActiveRecord::Schema.define(version: 2021_04_04_180122) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "breed_translations", force: :cascade do |t|
+    t.bigint "breed_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "info"
+    t.index ["breed_id"], name: "index_breed_translations_on_breed_id"
+    t.index ["locale"], name: "index_breed_translations_on_locale"
+  end
+
   create_table "breeds", force: :cascade do |t|
     t.string "title"
     t.integer "order", default: 1
     t.text "info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "dog_translations", force: :cascade do |t|
+    t.bigint "dog_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "fullname"
+    t.string "nickname"
+    t.text "about"
+    t.text "awards"
+    t.index ["dog_id"], name: "index_dog_translations_on_dog_id"
+    t.index ["locale"], name: "index_dog_translations_on_locale"
   end
 
   create_table "dogs", force: :cascade do |t|
@@ -102,10 +126,30 @@ ActiveRecord::Schema.define(version: 2021_04_04_180122) do
     t.string "viewable_type_scope"
   end
 
+  create_table "litter_translations", force: :cascade do |t|
+    t.bigint "litter_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.index ["litter_id"], name: "index_litter_translations_on_litter_id"
+    t.index ["locale"], name: "index_litter_translations_on_locale"
+  end
+
   create_table "litters", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "preference_translations", force: :cascade do |t|
+    t.bigint "preference_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "about"
+    t.index ["locale"], name: "index_preference_translations_on_locale"
+    t.index ["preference_id"], name: "index_preference_translations_on_preference_id"
   end
 
   create_table "preferences", force: :cascade do |t|
