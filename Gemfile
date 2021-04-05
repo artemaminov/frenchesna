@@ -76,4 +76,4 @@ gem 'devise'
 gem 'devise-i18n'
 
 gem 'globalize', '~> 5.3.0'
-gem 'activeadmin-globalize', git: 'https://github.com/Rubikal/activeadmin-globalize.git'
+gem 'activeadmin-globalize', git: 'https://github.com/artemaminov/activeadmin-globalize.git'
