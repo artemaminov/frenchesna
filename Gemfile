@@ -74,3 +74,6 @@ gem 'rails-i18n', '~> 5.1'
 gem 'activeadmin'
 gem 'devise'
 gem 'devise-i18n'
+
+gem 'globalize', '~> 5.3.0'
+gem 'activeadmin-globalize', git: 'https://github.com/artemaminov/activeadmin-globalize.git'

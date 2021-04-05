@@ -42,6 +42,26 @@ ru:
     errors:
       messages:
         record_invalid: Отсутствует запись
-  nullify_orphaned: Удалить потерянные записи
-  references_fixed: Мусор удален
-  sure?: Уверены?
+  content:
+    address: "г. Пушкино, Московской области"
+    breed: "Питомник"
+    contacts: "Контакты"
+    dog:
+      descendants: "Потомство"
+      father: "Отец"
+      female: "Суки"
+      genealogy: "Полная родословная"
+      parents: "Родители"
+      puppies_for_sale: "Щенки на продажу"
+      male: "Кобели"
+      mother: "Мать"
+      puppy: "Щенки"
+      graduate: "Выпускники"
+    gallery: "Галлерея"
+    gallery_content: "Здесь собраны все фотографии представленные на сайте"
+    gallery_loading_error: "Проблема загрузки изображениий"
+    no_dogs: "Собак нет"
+    title: "Французкие бульдоги и Грифоны"
+  nullify_orphaned: "Удалить потерянные записи"
+  references_fixed: "Мусор удален"
+  sure?: "Уверены?"

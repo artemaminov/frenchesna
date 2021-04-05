@@ -9,6 +9,7 @@ ActiveAdmin.register Dog do
     column :gender
     column :birthdate
     column :litter
+    translation_status_flags
     actions
   end
 
@@ -25,7 +26,7 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :fullname, :nickname, :birthdate, :about, :gender, :puppy, :awards, :rip, :mother_id, :father_id, :breed_id, :genealogy_link, :litter_id, avatar_attributes: [:id, :file, :_destroy], background_attributes: [:id], gallery_pictures_attributes: [:id, :file, :order, :_destroy], pictures_attributes: [:id, :order, :_destroy], litter_attributes: [:id, :title, :_destroy]
+  permit_params :birthdate, :gender, :puppy, :rip, :mother_id, :father_id, :breed_id, :genealogy_link, :litter_id, avatar_attributes: [:id, :file, :_destroy], background_attributes: [:id], gallery_pictures_attributes: [:id, :file, :order, :_destroy], pictures_attributes: [:id, :order, :_destroy], litter_attributes: [:id, :title, :_destroy], translations_attributes: [:id, :locale, :fullname, :nickname, :about, :awards, :_destroy]
 
   form do |f|
     within head do
@@ -41,9 +42,15 @@ ActiveAdmin.register Dog do
 
       f.input :puppy
       f.input :rip
-      f.input :fullname
-      f.input :nickname
-      f.input :awards
+
+      f.inputs "Translated fields" do
+        f.translated_inputs 'ignored title', switch_locale: false, default_locale: :ru do |t|
+          t.input :fullname
+          t.input :nickname
+          t.input :awards
+        end
+      end
+
       f.input :breed
       f.input :mother_id, allow_blank: false, include_hidden: false, collection: Dog.adults.female.not_itself(f.object.id).map { |d| [d.fullname, d.id] }
       f.input :father_id, include_hidden: false, collection: Dog.adults.male.not_itself(f.object.id).map { |d| [d.fullname, d.id] }
@@ -57,7 +64,12 @@ ActiveAdmin.register Dog do
       f.input :genealogy_link
       f.input :birthdate, as: :datepicker
       f.input :gender
-      f.input :about
+
+      f.inputs "Translated fields" do
+        f.translated_inputs 'ignored title', switch_locale: false, default_locale: :ru do |t|
+          t.input :about
+        end
+      end
     end
     f.inputs 'Изображения' do
       # byebug

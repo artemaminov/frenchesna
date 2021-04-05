@@ -1,9 +1,9 @@
 <div class="space"></div>
 <div class="title">
-  <h1>Галлерея</h1>
+  <h1><%= t('content.gallery') %></h1>
 </div>
 <div class="about-company box">
-  <p>Здесь собраны все фотографии представленные на сайте</p>
+  <p><%= t('content.gallery_content') %></p>
   <% unless @gallery.empty? %>
     <div class="gallery" data-turbolinks="false">
       <div class="pictures">
@@ -14,7 +14,7 @@
                   data: {fancybox: 'gallery'}
               ) %>
           <% rescue %>
-        <p>Проблема загрузки изображениий</p>
+        <p><%= t('content.gallery_loading_error') %></p>
           <% break %>
         <% end %>
       </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FrenchesnaRu</title>
+    <title><%= t('content.breed') %> Frenchesna</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -16,7 +16,11 @@
       </div>
       <div class="contacts">
         <a class="phone" href="tel:+79772614163">+7 (977) 261-41-63</a><br>
-        <span class="address">г. Пушкино, Московской области</span>
+        <span class="address"><%= t('content.address') %></span>
+      </div>
+      <div class="language__switcher">
+        <a href="?locale=ru" class="ru"><%= svg_tag("ru", class: "icon") %></a>
+        <a href="?locale=en" class="en"><%= svg_tag("en", class: "icon") %></a>
       </div>
     </header>
     <div class="content">
@@ -43,7 +47,7 @@
     </div>
     <footer>
       <div class="contacts">
-        <span class="address">г. Пушкино, Московской области</span>
+        <span class="address"><%= t('content.address') %></span>
         <br>
         <a class="phone" href="tel:+79772614163">+7 (977) 261-41-63</a>
       </div>

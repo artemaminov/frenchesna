@@ -1,7 +1,7 @@
 <ul>
   <li class="submenu">
     <input type="checkbox" id="females" <%= current_category? dogs.female, @dog %>>
-    <label for="females" class="title">Суки</label>
+    <label for="females" class="title"><%= t('content.dog.female') %></label>
     <div class="scroller">
       <ul class="list">
         <%= render partial: "shared/dogs_list", locals: {dogs: dogs.females, current_dog: @dog} %>
@@ -10,7 +10,7 @@
   </li>
   <li class="submenu">
     <input type="checkbox" id="males" <%= current_category? dogs.males, @dog %>>
-    <label for="males" class="title">Кобели</label>
+    <label for="males" class="title"><%= t('content.dog.male') %></label>
     <div class="scroller">
       <ul class="list">
         <%= render partial: "shared/dogs_list", locals: {dogs: dogs.males, current_dog: @dog} %>
@@ -19,7 +19,7 @@
   </li>
   <li class="submenu">
     <input type="checkbox" id="puppies" <%= current_category? puppies.alive, @dog %>>
-    <label for="puppies" class="title">Щенки</label>
+    <label for="puppies" class="title"><%= t('content.dog.puppy') %></label>
     <div class="scroller">
       <ul class="list">
         <%= render partial: "shared/dogs_list", locals: {dogs: puppies.alive, current_dog: @dog} %>
@@ -28,7 +28,7 @@
   </li>
   <li class="submenu">
     <input type="checkbox" id="graduate-puppies" <%= current_category? puppies.archived, @dog %>>
-    <label for="graduate-puppies" class="title">Выпускники</label>
+    <label for="graduate-puppies" class="title"><%= t('content.dog.graduate') %></label>
     <div class="scroller">
       <ul class="list">
         <%= render partial: "shared/dogs_list", locals: {dogs: puppies.archived, current_dog: @dog} %>
@@ -36,9 +36,9 @@
     </div>
   </li>
   <li class="submenu">
-    <span class="title"><a href="/gallery">Галлерея</a></span>
+    <span class="title"><a href="/gallery"><%= t('content.gallery') %></a></span>
   </li>
   <li class="submenu">
-    <span class="title"><a href="/">Контакты</a></span>
+    <span class="title"><a href="/"><%= t('content.contacts') %></a></span>
   </li>
 </ul>

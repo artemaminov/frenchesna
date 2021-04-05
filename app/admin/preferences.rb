@@ -1,5 +1,10 @@
 ActiveAdmin.register Preference do
-  permit_params :background, :about
+  permit_params :background, translations_attributes: [:id, :locale, :about, :_destroy]
+
+  index do
+    translation_status_flags
+    actions
+  end
 
   form do |f|
     within head do
@@ -14,8 +19,14 @@ ActiveAdmin.register Preference do
         hint = image_tag(f.object.background.variant(resize: "100x100").processed)
       end
       f.input :background, as: :file, input_html: { direct_upload: true }, hint: hint
-      f.input :about
     end
+
+    f.inputs "Translated fields" do
+      f.translated_inputs 'ignored title', switch_locale: false, default_locale: :ru do |t|
+        t.input :about
+      end
+    end
+
     f.actions
   end
 

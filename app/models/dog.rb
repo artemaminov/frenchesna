@@ -23,10 +23,6 @@ class Dog < ApplicationRecord
 
   enum gender: { male: 1, female: 0 }
 
-  validates_presence_of :fullname, :nickname, :birthdate, :awards, :about
-  validates_inclusion_of :gender, in: %w(male female)
-  validates_inclusion_of :rip, in: [true, false]
-
   scope :alive, -> { where(rip: false) }
   scope :archived, -> { where(rip: true) }
   scope :puppies, -> { where(puppy: true) }
@@ -41,6 +37,13 @@ class Dog < ApplicationRecord
   scope :sort_by_breed, -> { joins(:breed).order('breeds.order ASC') }
   scope :sort_by_name, -> { order('fullname ASC') }
   scope :sort_by_birth, -> { order('birthdate DESC') }
+
+  validates_presence_of :fullname, :nickname, :awards, :about, :birthdate
+  validates_inclusion_of :gender, in: %w(male female)
+  validates_inclusion_of :rip, in: [true, false]
+
+  translates :fullname, :nickname, :about, :awards
+  active_admin_translates :fullname, :nickname, :about, :awards
 
   def mother_id
     m = parents.female.first

@@ -1,6 +1,6 @@
 <div class="space"></div>
 <div class="title">
-  <h1>Французкие бульдоги и Грифоны</h1>
+  <h1><%= t('content.title') %></h1>
 </div>
 <div class="about-company box">
   <p><%= Preference.about.html_safe %></p>
@@ -9,7 +9,7 @@
 <% content_for :right_sidebar do %>
 <div class="menu">
   <div class="submenu descendants">
-    <span class="title">Щенки на продажу</span>
+    <span class="title"><%= t('content.dog.puppies_for_sale') %></span>
       <ul class="list">
         <%= render partial: "shared/dogs_list", locals: { dogs: @puppies.alive, reverse: true } %>
       </ul>
