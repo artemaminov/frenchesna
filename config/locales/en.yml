@@ -5,4 +5,21 @@ en:
         ru: "Русский"
   content:
     address: "Pushkino city, Moscow Oblast"
-
+    breed: "Breed"
+    contacts: "Contacts"
+    dog:
+      descendants: "Descendants"
+      father: "Father"
+      female: "Female"
+      genealogy: "Genealogy"
+      parents: "Parents"
+      puppies_for_sale: "Puppies for sale"
+      male: "Male"
+      mother: "Mother"
+      puppy: "Puppies"
+      graduate: "Graduated"
+    gallery: "Gallery"
+    gallery_content: "There are all photos uploaded"
+    gallery_loading_error: "Can't load photos. Please try again later"
+    no_dogs: "No dogs"
+    title: "French Bulldog and Brussel Gryphon"

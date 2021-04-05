@@ -24,30 +24,30 @@
   <% if @dog.puppy %>
     <div class="menu">
       <div class="submenu descendants">
-        <span class="title">Родители</span>
+        <span class="title"><%= t('content.dog.parents') %></span>
         <ul class="list">
           <%= render partial: "shared/parents", locals: { dog: @dog } %>
         </ul>
-        <%= link_to "Полная родословная", @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "genealogy button item" %>
+        <%= link_to t('content.dog.genealogy'), @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "genealogy button item" %>
       </div>
     </div>
   <% else %>
       <div class="menu">
         <div class="submenu descendants">
           <% unless @dog.parents.blank? %>
-            <span class="title">Родители</span>
+            <span class="title"><%= t('content.dog.parents') %></span>
             <ul class="list">
               <%= render partial: "shared/parents", locals: { dog: @dog } %>
             </ul>
           <% end %>
           <% unless @dog.kids.blank? %>
-            <span class="title">Потомство</span>
+            <span class="title"><%= t('content.dog.descendants') %></span>
             <ul class="list">
               <%= render partial: "shared/dogs_list", locals: { dogs: @dog.kids, reverse: true } %>
             </ul>
           <% end %>
           <% unless @dog.genealogy_link.blank? %>
-            <%= link_to "Полная родословная", @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "genealogy button item" %>
+            <%= link_to t('content.dog.genealogy'), @dog.genealogy_link, target: "_blank", rel: "nofollow", class: "genealogy button item" %>
           <% end %>
         </div>
       </div>

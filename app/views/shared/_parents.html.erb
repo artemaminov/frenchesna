@@ -3,7 +3,7 @@
   <a href="<%= dog_path dog %>">
     <div>
       <span class="avatar">
-        <span><%= dog.gender == 'female' ? "Мать" : "Отец" %><br><%= dog.fullname %></span>
+        <span><%= dog.gender == 'female' ? t('content.dog.mother') : t('content.dog.father') %><br><%= dog.fullname %></span>
         <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file })\"".html_safe unless dog.avatar.blank? %>></i>
       </span>
     </div>
