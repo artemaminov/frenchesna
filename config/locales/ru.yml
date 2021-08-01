@@ -1,5 +1,9 @@
 ru:
   active_admin:
+    globalize:
+      language:
+        en: English
+        ru: Русский
     move: Переместить
   activerecord:
     attributes:
