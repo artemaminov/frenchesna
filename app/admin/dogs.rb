@@ -48,6 +48,7 @@ ActiveAdmin.register Dog do
           t.input :fullname
           t.input :nickname
           t.input :awards
+          t.input :about
         end
       end
 
@@ -65,11 +66,11 @@ ActiveAdmin.register Dog do
       f.input :birthdate, as: :datepicker
       f.input :gender
 
-      f.inputs "Translated fields" do
-        f.translated_inputs 'ignored title', switch_locale: false, default_locale: :ru do |t|
-          t.input :about
-        end
-      end
+      # f.inputs "Translated fields" do
+      #   f.translated_inputs 'ignored title', switch_locale: true, default_locale: :ru do |t|
+      #     t.input :about
+      #   end
+      # end
     end
     f.inputs 'Изображения' do
       # byebug
