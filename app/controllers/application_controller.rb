@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
 
     # save to session
     session[:locale] = I18n.locale
+    @pagy_locale = I18n.locale.to_s
   end
 
   # these could potentially do with a bit of tidying up

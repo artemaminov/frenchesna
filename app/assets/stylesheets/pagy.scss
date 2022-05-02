@@ -1,0 +1,31 @@
+nav.pagy-nav.pagination {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7em;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: #4a4a4a 1px 1px 3px;
+  margin-top: 2em;
+
+  .page {
+    margin-right: 1em;
+    padding: 1px 6px;
+
+    &.active, &.disabled {
+      color: black;
+      border: 1px solid white;
+      border-radius: 3px;
+      background-color: white;
+      text-shadow: none;
+    }
+
+    &.prev, &.next {
+      border: none;
+      background-color: transparent;
+      color: #d0d0d0;
+    }
+
+    a {
+      color: white;
+    }
+  }
+}
