@@ -196,8 +196,8 @@ ul { direction:ltr; }
         }
       }
       .main {
-        flex: auto;
-        display: flex;
+        flex: 1;
+        display: block;
         flex-direction: column;
         .space {
           flex: 1;
