@@ -32,6 +32,7 @@ ActiveAdmin.register Dog do
     within head do
       script src: javascript_path('activestorage.js'), type: "text/javascript"
       script src: javascript_path('admin/direct_uploads.js'), type: "text/javascript"
+      script src: javascript_path('admin/precrop.js'), type: "text/javascript"
       script src: javascript_path('admin/add_litter.js'), type: "text/javascript"
       link rel: "stylesheet", media: "screen", href: stylesheet_path('admin/direct_uploads.css')
       link rel: "stylesheet", media: "screen", href: stylesheet_path('admin/photos_helper.css')
@@ -85,6 +86,9 @@ ActiveAdmin.register Dog do
       end
     end
     f.actions
+    div id: "rcrop_container" do
+      img id: "rcrop_image"
+    end
   end
 
   after_create do
