@@ -86,8 +86,10 @@ ActiveAdmin.register Dog do
       end
     end
     f.actions
-    div id: "rcrop_container" do
-      img id: "rcrop_image"
+    div id: 'rcrop_container'
+    div id: 'rcrop_template' do
+      img style: 'width: 100%;'
+      div style: 'position: absolute; top: 30px; left: 30px;'
     end
   end
 
