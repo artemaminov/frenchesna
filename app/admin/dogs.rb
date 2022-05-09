@@ -85,8 +85,12 @@ ActiveAdmin.register Dog do
         f.input :pictures, as: :file, input_html: { multiple: true, direct_upload: true, name: 'dog[gallery_pictures_attributes][][file]', class: 'rcrop' }
       end
     end
-    f.actions
+
     div id: 'rcrop_container'
+    div id: 'rcrop_data'
+
+    f.actions
+
     div id: 'rcrop_template' do
       img style: 'width: 100%;'
       div style: 'position: absolute; top: 30px; left: 30px;'
