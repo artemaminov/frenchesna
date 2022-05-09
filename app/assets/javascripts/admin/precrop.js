@@ -1,8 +1,7 @@
 class Cropper {
 
-  constructor(selectors) {
-    this.cropperTabs = [];
-    this.imageProps = {
+  constructor() {
+      $inputs: $('.rcrop'),
       typesAllowed: ['image/png', 'image/jpg'],
       avatar: {
         minSize: [100, 100]
@@ -18,7 +17,7 @@ class Cropper {
       previewWrapper: $('#rcrop_template div'),
     };
 
-    $(selectors).on('change', event => this.initCropper(event));
+    this.rcrop.$inputs.on('change', event => this.initCropper(event));
   };
 
   openFancy() {
@@ -85,5 +84,5 @@ class Cropper {
 }
 
 $(function() {
-  window.cropper = new Cropper('#dog_viewable_id, #dog_picture_ids');
+  window.cropper = new Cropper();
 });
