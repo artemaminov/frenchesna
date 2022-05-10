@@ -2,13 +2,13 @@ class Cropper {
 
   constructor() {
     this.rcrop = {
-      tabs: [],
-      inputFileName: 'file',
-      rcropAttributeName: 'rcrop',
-      $inputs: $('.rcrop'),
-      $container: $('#rcrop_container'),
-      $data: $('#rcrop_data'),
-      $template: $('#rcrop_template'),
+      tabs: [], // stores cropper objects
+      inputFileName: 'file', // input file field class name
+      rcropAttributeName: 'rcrop', // attribute name of input's name/array
+      $inputs: $('.rcrop'), // main eventListener element name
+      $container: $('#rcrop_container'), // modal window object
+      $data: $('#rcrop_data'), // element stores cropper data inputs
+      $template: $('#rcrop_template'), // template object with cropper img and preview
       typesAllowed: ['image/png', 'image/jpg'],
       pictureGroups: {
         avatar: {
@@ -23,6 +23,8 @@ class Cropper {
     this.rcrop.$inputs.on('change', event => this.initCropper(event));
   };
 
+  // open fancy modal window
+  // inputName: input name of file field
   openFancy(inputName) {
     console.log(this.rcrop.$container[0]);
     $.fancybox.open({
