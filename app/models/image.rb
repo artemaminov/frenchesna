@@ -1,5 +1,4 @@
 class Image < ApplicationRecord
-  attr_accessor :rcrop
   belongs_to :viewable, polymorphic: true
 
   has_one_attached :file
