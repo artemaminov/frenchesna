@@ -26,7 +26,6 @@ class Cropper {
   // open fancy modal window
   // inputName: input name of file field
   openFancy(inputName) {
-    console.log(this.rcrop.$container[0]);
     $.fancybox.open({
       src: '#' + this.rcrop.$container.attr('id'),
       clickSlide: false,
