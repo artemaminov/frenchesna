@@ -64,7 +64,7 @@ class Cropper {
   };
 
   collectData(crop) {
-    let cropCmd = '#' + crop.width + 'x' + crop.height + '+' + crop.x + '+' +crop.y;
+    let cropCmd = crop.width + 'x' + crop.height + '+' + crop.x + '+' +crop.y;
     return cropCmd;
   }
 
