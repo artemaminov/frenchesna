@@ -12,11 +12,13 @@ class Cropper {
       typesAllowed: ['image/png', 'image/jpg'],
       pictureTypes: {
         avatar: {
-          inputName: 'dog[avatar_attributes][crop]',
+          cropInputName: 'dog[avatar_attributes][crop]',
+          minSizeInputName: 'dog[avatar_attributes][size]',
           minSize: '84x84'
         },
         picture: {
-          inputName: 'dog[gallery_pictures_attributes][][crop]',
+          cropInputName: 'dog[gallery_pictures_attributes][][crop]',
+          minSizeInputName: 'dog[gallery_pictures_attributes][][size]',
           minSize: '1600x1900'
         }
       }
@@ -73,7 +75,23 @@ class Cropper {
   }
 
   removeDuplicates(inputName) {
-      this.rcrop.$data.find('input[name="' + inputName + '"]').remove();
+    let cropInputs = 'input[name="' + this.rcrop.pictureTypes[inputName].cropInputName + '"]';
+    let sizeInputs = 'input[name="' + this.rcrop.pictureTypes[inputName].minSizeInputName + '"]';
+      this.rcrop.$data
+        .find(cropInputs)
+        .add(sizeInputs)
+        .remove();
+  }
+
+  generateInputField(pictureType, values) {
+    $('<input>')
+      .attr('name', this.rcrop.pictureTypes[pictureType].cropInputName)
+      .val(this.collectData(values, pictureType)[0])
+      .appendTo(this.rcrop.$data);
+    $('<input>')
+      .attr('name', this.rcrop.pictureTypes[pictureType].minSizeInputName)
+      .val(this.collectData(values, pictureType)[1])
+      .appendTo(this.rcrop.$data);
   }
 
   transferData(pictureType) {
@@ -81,10 +99,7 @@ class Cropper {
     for (let i = 0; i < this.rcrop.tabs.length; i++) {
       let currentTab = this.rcrop.tabs[i];
       currentTab['values'] = this.rcrop.tabs[i].find('img').rcrop('getValues');
-      $('<input>')
-        .attr('name', this.rcrop.pictureTypes[pictureType].inputName)
-        .val(this.collectData(currentTab['values'], pictureType))
-        .appendTo(this.rcrop.$data);
+      this.generateInputField(pictureType, currentTab['values']);
     }
   }
 
