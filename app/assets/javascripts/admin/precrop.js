@@ -4,7 +4,7 @@ class Cropper {
     this.rcrop = {
       tabs: [], // stores cropper objects
       inputFileName: 'file', // input file field class name
-      rcropAttributeName: 'rcrop', // attribute name of input's name/array
+      rcropAttributeName: 'crop', // attribute name of input's name/array
       $inputs: $('.rcrop'), // main eventListener element name
       $container: $('#rcrop_container'), // modal window object
       $data: $('#rcrop_data'), // element stores cropper data inputs
