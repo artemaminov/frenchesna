@@ -39,7 +39,7 @@ ActiveAdmin.register Dog do
     end
     f.semantic_errors *f.object.errors.keys
     f.inputs 'Детали' do
-      f.input :avatar, as: :file, allow_destroy: true, hint: (image_tag(f.object.avatar.file.variant(resize: "100x100")) unless f.object.avatar.blank?), input_html: { direct_upload: true, name: "dog[avatar_attributes][file]", class: 'rcrop' }
+      f.input :avatar, as: :file, allow_destroy: true, hint: (image_tag(f.object.avatar.file.variant(resize: "100x100")) unless f.object.avatar.blank?), input_html: { direct_upload: true, name: "dog[avatar_attributes][file]", class: 'rcrop', data: { rcrop_picture_type: 'avatar' }}
 
       f.input :puppy
       f.input :rip
@@ -82,7 +82,7 @@ ActiveAdmin.register Dog do
           img_class = "dogs-avatar" if p.object == f.object.avatar
           p.input :file, hint: image_tag(p.object.file.variant(resize: "100x100").processed, class: img_class)
         end
-        f.input :pictures, as: :file, input_html: { multiple: true, direct_upload: true, name: 'dog[gallery_pictures_attributes][][file]', class: 'rcrop' }
+        f.input :pictures, as: :file, input_html: { multiple: true, direct_upload: true, name: 'dog[gallery_pictures_attributes][][file]', class: 'rcrop', data: { rcrop_picture_type: 'picture' }}
       end
     end
 

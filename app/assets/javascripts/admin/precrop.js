@@ -10,12 +10,14 @@ class Cropper {
       $data: $('#rcrop_data'), // element stores cropper data inputs
       $template: $('#rcrop_template'), // template object with cropper img and preview
       typesAllowed: ['image/png', 'image/jpg'],
-      pictureGroups: {
+      pictureTypes: {
         avatar: {
-          minSize: [100, 100]
+          inputName: 'dog[avatar_attributes][crop]',
+          minSize: '84x84'
         },
         picture: {
-          minSize: [1600, 1900]
+          inputName: 'dog[gallery_pictures_attributes][][crop]',
+          minSize: '1600x1900'
         }
       }
     };
@@ -25,14 +27,14 @@ class Cropper {
 
   // open fancy modal window
   // inputName: input name of file field
-  openFancy(inputName) {
+  openFancy(pictureType) {
     $.fancybox.open({
       src: '#' + this.rcrop.$container.attr('id'),
       clickSlide: false,
       touch: false,
 
       beforeClose : event => {
-        this.transferData(inputName);
+        this.transferData(pictureType);
         this.rcrop.$container.empty();
       }
     });
@@ -64,35 +66,32 @@ class Cropper {
     return template;
   };
 
-  collectData(crop) {
+  collectData(crop, pictureType) {
     let cropCmd = crop.width + 'x' + crop.height + '+' + crop.x + '+' +crop.y;
-    return cropCmd;
+    let resizeCmd = this.rcrop.pictureTypes[pictureType].minSize;
+    return [cropCmd, resizeCmd];
   }
 
   removeDuplicates(inputName) {
       this.rcrop.$data.find('input[name="' + inputName + '"]').remove();
   }
 
-  transferData(inputName) {
-    this.removeDuplicates(inputName);
+  transferData(pictureType) {
+    this.removeDuplicates(pictureType);
     for (let i = 0; i < this.rcrop.tabs.length; i++) {
       let currentTab = this.rcrop.tabs[i];
       currentTab['values'] = this.rcrop.tabs[i].find('img').rcrop('getValues');
       $('<input>')
-        .attr('name', inputName)
-        .val(this.collectData(currentTab['values']))
+        .attr('name', this.rcrop.pictureTypes[pictureType].inputName)
+        .val(this.collectData(currentTab['values'], pictureType))
         .appendTo(this.rcrop.$data);
     }
   }
 
-  inputName(inputName) {
-    return inputName.replace(this.rcrop.inputFileName, this.rcrop.rcropAttributeName)
-  }
-
   initCropper(event) {
-    this.rcrop.tabs = [];
-    const filesCount = event.target.files.length;
-    let name = this.inputName(event.target.name);
+    this.rcrop.tabs = []; // Clean tabs array
+    const filesCount = event.target.files.length; // Get files count
+    let pictureType = $(event.target).data('rcrop-picture-type');
 
     if (filesCount > 0) {
       for (let i = 0; i < filesCount; i++) {
@@ -100,7 +99,7 @@ class Cropper {
         this.rcrop.tabs[i] = this.addCropperTab(i, src);
       }
       this.launchCropper(filesCount);
-      this.openFancy(name);
+      this.openFancy(pictureType);
 
     } else {
       return console.log('No files to crop!');
