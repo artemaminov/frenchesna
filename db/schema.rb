@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_09_205943) do
+ActiveRecord::Schema.define(version: 2022_05_11_103837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 2022_05_09_205943) do
     t.string "viewable_type"
     t.string "viewable_type_scope"
     t.string "crop"
+    t.string "resize"
   end
 
   create_table "litter_translations", force: :cascade do |t|
