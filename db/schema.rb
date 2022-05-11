@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2022_05_09_205943) do
     t.integer "viewable_id"
     t.string "viewable_type"
     t.string "viewable_type_scope"
-    t.string "rcrop"
+    t.string "crop"
   end
 
   create_table "litter_translations", force: :cascade do |t|

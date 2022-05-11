@@ -26,7 +26,7 @@ ActiveAdmin.register Dog do
     end
   end
 
-  permit_params :birthdate, :gender, :puppy, :rip, :mother_id, :father_id, :breed_id, :genealogy_link, :litter_id, avatar_attributes: [:id, :file, :rcrop, :_destroy], background_attributes: [:id], gallery_pictures_attributes: [:id, :file, :rcrop, :order, :_destroy], pictures_attributes: [:id, :order, :_destroy], litter_attributes: [:id, :title, :_destroy], translations_attributes: [:id, :locale, :fullname, :nickname, :about, :awards, :_destroy]
+  permit_params :birthdate, :gender, :puppy, :rip, :mother_id, :father_id, :breed_id, :genealogy_link, :litter_id, avatar_attributes: [:id, :file, :crop, :_destroy], background_attributes: [:id], gallery_pictures_attributes: [:id, :file, :crop, :order, :_destroy], pictures_attributes: [:id, :order, :_destroy], litter_attributes: [:id, :title, :_destroy], translations_attributes: [:id, :locale, :fullname, :nickname, :about, :awards, :_destroy]
 
   form do |f|
     within head do
