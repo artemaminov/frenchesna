@@ -13,15 +13,15 @@ class Cropper {
       pictureTypes: {
         avatar: {
           cropInputName: 'dog[avatar_attributes][crop]',
-          minSizeInputName: 'dog[avatar_attributes][size]',
-          minSize: '84x84'
+          minSizeInputName: 'dog[avatar_attributes][resize]',
+          minSize: [84, 84]
         },
         picture: {
           cropInputName: 'dog[gallery_pictures_attributes][][crop]',
-          minSizeInputName: 'dog[gallery_pictures_attributes][][size]',
-          minSize: '1600x1900'
+          minSizeInputName: 'dog[gallery_pictures_attributes][][resize]',
+          minSize: [1400, 900]
         }
-      }
+      },
     };
 
     this.rcrop.$inputs.on('change', event => this.initCropper(event));
@@ -70,7 +70,7 @@ class Cropper {
 
   collectData(crop, pictureType) {
     let cropCmd = crop.width + 'x' + crop.height + '+' + crop.x + '+' +crop.y;
-    let resizeCmd = this.rcrop.pictureTypes[pictureType].minSize;
+    let resizeCmd = this.rcrop.pictureTypes[pictureType].minSize.join('x');
     return [cropCmd, resizeCmd];
   }
 

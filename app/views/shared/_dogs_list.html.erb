@@ -11,7 +11,7 @@
         <div>
           <% unless local_assigns[:reverse] %>
         <span class="avatar reverse">
-          <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file.variant(crop: dog.avatar.rcrop, resize: '100x100').processed })\"".html_safe unless dog.avatar.blank? %>></i>
+          <i class="<%= dog.gender %><%= " stub" if dog.avatar.blank? %>" <%= "style=\"background-image: url(#{ url_for dog.avatar.file.variant(crop: dog.avatar.crop, resize: '100x100').processed })\"".html_safe unless dog.avatar.blank? %>></i>
           <span><%= dog.fullname %>
             <span class="breed__title"><%= dog.breed.title %></span>
           </span>
