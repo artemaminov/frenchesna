@@ -80,7 +80,11 @@ ActiveAdmin.register Dog do
         f.has_many :pictures, sortable: :order, sortable_start: 1, allow_destroy: true, new_record: false, heading: false do |p|
           img_class = "dogs-background" if p.object == f.object.background
           img_class = "dogs-avatar" if p.object == f.object.avatar
-          p.input :file, hint: image_tag(p.object.file.variant(resize: "100x100").processed, class: img_class)
+          p.input :file, hint: link_to(
+            image_tag(p.object.file.variant(crop: p.object.crop, resize: '100x100').processed),
+            p.object.file,
+            class: img_class
+          )
         end
         f.input :pictures, as: :file, input_html: { multiple: true, direct_upload: true, name: 'dog[gallery_pictures_attributes][][file]', class: 'rcrop', data: { rcrop_picture_type: 'picture' }}
       end
