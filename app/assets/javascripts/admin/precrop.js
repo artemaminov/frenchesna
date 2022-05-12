@@ -45,14 +45,14 @@ class Cropper {
   launchCropper(filesCount) {
     for (let i = 0; i < filesCount; i++) {
       let currentTab = this.rcrop.tabs[i];
-      currentTab.find('img').rcrop({
         // maxSize : [160, 160],
         minSize: [100, 100],
+      currentTab.find('.rcrop_cropper').rcrop({
         preserveAspectRatio: true,
         grid: true,
         preview: {
           display: true,
-          wrapper: currentTab.find('div'),
+          wrapper: currentTab.find('.rcrop_preview'),
           size: [200, 200]
         }
       });
@@ -61,10 +61,11 @@ class Cropper {
 
   addCropperTab(i, src) {
     let template = this.rcrop.$template.clone().attr('id', 'rcrop_template_' + i).appendTo(this.rcrop.$container);
-    template.find('img')
+    template.find('.rcrop_cropper')
       .attr('id', 'rcrop_image_' + i)
-      .attr('src', src);;
-    template.find('div').attr('id', 'rcrop_preview_' + i);
+      .attr('src', src);
+
+    template.find('.rcrop_preview').attr('id', 'rcrop_preview_' + i);
     return template;
   };
 

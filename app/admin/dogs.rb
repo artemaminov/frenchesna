@@ -92,8 +92,10 @@ ActiveAdmin.register Dog do
     f.actions
 
     div id: 'rcrop_template' do
-      img style: 'width: 100%;'
-      div style: 'position: absolute; top: 30px; left: 30px;'
+      div style: 'position: relative;' do
+        img class: 'rcrop_cropper', style: 'width: 100%;'
+        div class: 'rcrop_preview', style: 'position: absolute; top: 30px; left: 30px; border: 4px solid white;'
+      end
     end
   end
 
