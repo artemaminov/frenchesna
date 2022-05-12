@@ -24,6 +24,7 @@ class Cropper {
       },
     };
 
+    this.rcrop.$inputs.attr('accept', this.rcrop.typesAllowed.join(','));
     this.rcrop.$inputs.on('change', event => this.initCropper(event));
   };
 
