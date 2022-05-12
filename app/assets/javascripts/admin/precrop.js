@@ -2,7 +2,7 @@ class Cropper {
 
   constructor() {
     this.rcrop = {
-      tabs: [], // stores cropper objects
+      tabs: new Set(), // stores cropper objects
       inputFileName: 'file', // input file field class name
       rcropAttributeName: 'crop', // attribute name of input's name/array
       $inputs: $('.rcrop'), // main eventListener element name
@@ -42,12 +42,10 @@ class Cropper {
     });
   };
 
-  launchCropper(filesCount) {
-    for (let i = 0; i < filesCount; i++) {
-      let currentTab = this.rcrop.tabs[i];
-        // maxSize : [160, 160],
-        minSize: [100, 100],
+  launchCropper(pictureType) {
+    for (let currentTab of this.rcrop.tabs) {
       currentTab.find('.rcrop_cropper').rcrop({
+        minSize: this.rcrop.pictureTypes[pictureType].minSize,
         preserveAspectRatio: true,
         grid: true,
         preview: {
@@ -97,29 +95,44 @@ class Cropper {
 
   transferData(pictureType) {
     this.removeDuplicates(pictureType);
-    for (let i = 0; i < this.rcrop.tabs.length; i++) {
-      let currentTab = this.rcrop.tabs[i];
-      currentTab['values'] = this.rcrop.tabs[i].find('img').rcrop('getValues');
+    for (let currentTab of this.rcrop.tabs) {
+      currentTab['values'] = currentTab.find('img').rcrop('getValues');
       this.generateInputField(pictureType, currentTab['values']);
     }
   }
 
-  initCropper(event) {
-    this.rcrop.tabs = []; // Clean tabs array
+  checkImageDimensions(src, pictureType) {
+    return new Promise((resolve, reject) => {
+      let image = new Image();
+      image.src = src;
+      image.onload = (event) => {
+        if (event.target.naturalWidth < this.rcrop.pictureTypes[pictureType].minSize[0] ||
+          event.target.naturalHeight < this.rcrop.pictureTypes[pictureType].minSize[1]
+        ) {
+          alert('Изображение меньше минимальных размеров: ' + this.rcrop.pictureTypes[pictureType].minSize.join('x'));
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      }
+    });
+  }
+
+  async initCropper(event) {
+    this.rcrop.tabs.clear(); // Clean tabs array
     const filesCount = event.target.files.length; // Get files count
-    let pictureType = $(event.target).data('rcrop-picture-type');
+    const pictureType = $(event.target).data('rcrop-picture-type');
 
     if (filesCount > 0) {
       for (let i = 0; i < filesCount; i++) {
         let src = URL.createObjectURL(event.target.files[i]);
-        this.rcrop.tabs[i] = this.addCropperTab(i, src);
+        if (await this.checkImageDimensions(src, pictureType) === true) {
+          this.rcrop.tabs.add(this.addCropperTab(i, src));
+        }
       }
-      this.launchCropper(filesCount);
-      this.openFancy(pictureType);
-
-    } else {
-      return console.log('No files to crop!');
     }
+    this.launchCropper(pictureType);
+    this.openFancy(pictureType);
   };
 
 }
