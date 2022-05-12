@@ -119,19 +119,34 @@ class Cropper {
     });
   }
 
+  removeFileFromFileList(filesToRemove, inputFeild) {
+    const dt = new DataTransfer()
+    const { files } = inputFeild
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      if (!filesToRemove.includes(i))
+        dt.items.add(file) // here you exclude the file. thus removing it.
+    }
+    inputFeild.files = dt.files // Assign the updates list
+  }
+
   async initCropper(event) {
     this.rcrop.tabs.clear(); // Clean tabs array
     const filesCount = event.target.files.length; // Get files count
     const pictureType = $(event.target).data('rcrop-picture-type');
+    let filesToRemove = [];
 
     if (filesCount > 0) {
       for (let i = 0; i < filesCount; i++) {
         let src = URL.createObjectURL(event.target.files[i]);
         if (await this.checkImageDimensions(src, pictureType) === true) {
           this.rcrop.tabs.add(this.addCropperTab(i, src));
+        } else {
+          filesToRemove.push(i);
         }
       }
     }
+    this.removeFileFromFileList(filesToRemove, event.target);
     this.launchCropper(pictureType);
     this.openFancy(pictureType);
   };
