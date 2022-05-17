@@ -112,10 +112,17 @@ ActiveAdmin.register Dog do
     def update
       add_parents
       set_background
+      update_avatar
       super
     end
 
     private
+
+    def update_avatar
+      if params[:dog][:avatar_attributes] && resource.avatar
+        resource.avatar.file.attach params[:dog].delete(:avatar_attributes)[:file]
+      end
+    end
 
     def set_background
       return if params[:dog][:background_attributes].nil?
