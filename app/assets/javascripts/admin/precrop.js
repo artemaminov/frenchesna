@@ -38,7 +38,7 @@ class Cropper {
       clickSlide: false,
       touch: false,
 
-      beforeClose: event => {
+      beforeClose: () => {
         this.transferData(pictureType);
         this.rcrop.$container.empty();
       }
