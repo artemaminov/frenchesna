@@ -121,18 +121,18 @@ ActiveAdmin.register Dog do
       return if params[:dog][:background_attributes].nil?
 
       current_background = resource.background
-      image = resource.pictures.find(params[:dog].delete(:background_attributes)[:id])
+      new_background = resource.pictures.find(params[:dog].delete(:background_attributes)[:id])
 
       unless current_background.blank?
-        return if current_background == image
+        return if current_background == new_background
 
         current_background.viewable_type_scope = 'Gallery'
         current_background.save
 
       end
 
-      image.viewable_type_scope = 'Background'
-      image.save
+      new_background.viewable_type_scope = 'Background'
+      new_background.save
     end
 
     def add_parents
