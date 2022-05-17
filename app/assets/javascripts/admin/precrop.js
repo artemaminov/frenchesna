@@ -46,15 +46,20 @@ class Cropper {
   };
 
   launchCropper(pictureType) {
-    for (let currentTab of this.rcrop.tabs) {
-      currentTab.find('.rcrop_cropper').rcrop({
+    const minSizeX = this.rcrop.pictureTypes[pictureType].minSize[0]
+    const minSizeY = this.rcrop.pictureTypes[pictureType].minSize[1]
+    for (const currentTab of this.rcrop.tabs) {
+      const cropper = currentTab.find('.rcrop_cropper')
+      const ratio = minSizeY / minSizeX
+      const ratioY = 200 * ratio
+      cropper.rcrop({
         minSize: this.rcrop.pictureTypes[pictureType].minSize,
         preserveAspectRatio: true,
         grid: true,
         preview: {
           display: true,
           wrapper: currentTab.find('.rcrop_preview'),
-          size: [200, 200]
+          size: [200, ratioY]
         }
       });
     }
