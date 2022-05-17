@@ -66,18 +66,25 @@ class Cropper {
   };
 
   addCropperTab(i, src) {
-    let template = this.rcrop.$template.clone().attr('id', 'rcrop_template_' + i).appendTo(this.rcrop.$container);
-    template.find('.rcrop_cropper')
+    const template = this.rcrop.$template
+      .clone()
+      .attr('id', 'rcrop_template_' + i)
+      .appendTo(this.rcrop.$container);
+
+    template
+      .find('.rcrop_cropper')
       .attr('id', 'rcrop_image_' + i)
       .attr('src', src);
 
-    template.find('.rcrop_preview').attr('id', 'rcrop_preview_' + i);
+    template
+      .find('.rcrop_preview')
+      .attr('id', 'rcrop_preview_' + i);
     return template;
   };
 
   collectData(crop, pictureType) {
-    let cropCmd = crop.width + 'x' + crop.height + '+' + crop.x + '+' +crop.y;
-    let resizeCmd = this.rcrop.pictureTypes[pictureType].minSize.join('x');
+    const cropCmd = crop.width + 'x' + crop.height + '+' + crop.x + '+' +crop.y;
+    const resizeCmd = this.rcrop.pictureTypes[pictureType].minSize.join('x');
     return [cropCmd, resizeCmd];
   }
 
@@ -130,8 +137,8 @@ class Cropper {
   }
 
   checkImageDimensions(src, pictureType) {
-    return new Promise((resolve, reject) => {
-      let image = new Image();
+    return new Promise((resolve) => {
+      const image = new Image();
       image.src = src;
       image.onload = (event) => {
         if (event.target.naturalWidth < this.rcrop.pictureTypes[pictureType].minSize[0] ||
@@ -168,11 +175,11 @@ class Cropper {
     this.rcrop.tabs.clear(); // Clean tabs array
     const filesCount = event.target.files.length; // Get files count
     const pictureType = $(event.target).data('rcrop-picture-type');
-    let filesToRemove = [];
+    const filesToRemove = [];
 
     if (filesCount > 0) {
       for (let i = 0; i < filesCount; i++) {
-        let src = URL.createObjectURL(event.target.files[i]);
+        const src = URL.createObjectURL(event.target.files[i]);
         if (await this.checkImageDimensions(src, pictureType) === true) {
           this.rcrop.tabs.add(this.addCropperTab(i, src));
         } else {
