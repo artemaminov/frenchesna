@@ -12,11 +12,13 @@ class Cropper {
       typesAllowed: ['image/png', 'image/jpg'],
       pictureTypes: {
         avatar: {
+          fileInputName: 'dog[avatar_attributes][file]',
           cropInputName: 'dog[avatar_attributes][crop]',
           minSizeInputName: 'dog[avatar_attributes][resize]',
           minSize: [84, 84]
         },
         picture: {
+          fileInputName: 'dog[gallery_pictures_attributes][][file]',
           cropInputName: 'dog[gallery_pictures_attributes][][crop]',
           minSizeInputName: 'dog[gallery_pictures_attributes][][resize]',
           minSize: [1400, 900]
@@ -74,13 +76,29 @@ class Cropper {
     return [cropCmd, resizeCmd];
   }
 
-  removeDuplicates(inputName) {
-    let cropInputs = 'input[name="' + this.rcrop.pictureTypes[inputName].cropInputName + '"]';
-    let sizeInputs = 'input[name="' + this.rcrop.pictureTypes[inputName].minSizeInputName + '"]';
+  clearInputs(inputName) {
+    const cropInputs = 'input[name="' + this.rcrop.pictureTypes[inputName].cropInputName + '"]';
+    const sizeInputs = 'input[name="' + this.rcrop.pictureTypes[inputName].minSizeInputName + '"]';
+    const fileInputs = 'input[name="' + this.rcrop.pictureTypes[inputName].fileInputName + '"]';
       this.rcrop.$data
         .find(cropInputs)
-        .add(sizeInputs)
+        .add(sizeInputs, this.rcrop.$data)
+        .add(fileInputs, this.rcrop.$data)
         .remove();
+  }
+
+  generateFileInput(pictureType, i) {
+    const inputField = this.rcrop.pictureTypes[pictureType].fileInputName
+    const dt = new DataTransfer()
+    const { files } = document.querySelector('input[name="' + inputField + '"]')
+    const file = files[i]
+    const newInput = document.createElement('input')
+    newInput.setAttribute('type', 'file')
+    newInput.setAttribute('name', this.rcrop.pictureTypes[pictureType].fileInputName)
+    newInput.setAttribute('data-direct-upload-url', 'http://localhost:3000/rails/active_storage/direct_uploads')
+    dt.items.add(file)
+    newInput.files = dt.files
+    this.rcrop.$data.append(newInput)
   }
 
   generateInputField(pictureType, values) {
@@ -95,11 +113,15 @@ class Cropper {
   }
 
   transferData(pictureType) {
-    this.removeDuplicates(pictureType);
-    for (let currentTab of this.rcrop.tabs) {
+    let i = 0;
+    this.clearInputs(pictureType);
+    for (const currentTab of this.rcrop.tabs) {
       currentTab['values'] = currentTab.find('img').rcrop('getValues');
+      this.generateFileInput(pictureType, i);
       this.generateInputField(pictureType, currentTab['values']);
+      i++
     }
+    this.disableMainInputs()
   }
 
   checkImageDimensions(src, pictureType) {
@@ -119,15 +141,22 @@ class Cropper {
     });
   }
 
-  removeFileFromFileList(filesToRemove, inputFeild) {
-    const dt = new DataTransfer()
-    const { files } = inputFeild
+  disableMainInputs() {
+    const inputs = this.rcrop.$inputs;
+    for (const input of inputs) {
+      input.files = new DataTransfer().files;
+    }
+  }
+
+  processFilesFromFileList(filesToRemove, inputField) {
+    const DT = new DataTransfer()
+    const { files } = inputField
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
-      if (!filesToRemove.includes(i))
-        dt.items.add(file) // here you exclude the file. thus removing it.
+      if (!filesToRemove.includes(i)) // Add file to FileList if it's not in the filesToRemove array
+        DT.items.add(file)
     }
-    inputFeild.files = dt.files // Assign the updates list
+    inputField.files = DT.files // Assign the updated list
   }
 
   async initCropper(event) {
@@ -146,7 +175,7 @@ class Cropper {
         }
       }
     }
-    this.removeFileFromFileList(filesToRemove, event.target);
+    this.processFilesFromFileList(filesToRemove, event.target);
     this.launchCropper(pictureType);
     this.openFancy(pictureType);
   };
