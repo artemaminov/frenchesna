@@ -15,10 +15,10 @@ ActiveAdmin.register Preference do
     end
     f.semantic_errors *f.object.errors.keys
     f.inputs "Preferences" do
-      if f.object.background.attached?
-        hint = image_tag(f.object.background.variant(resize: "100x100").processed)
+      if f.object.file.attached?
+        hint = image_tag(f.object.file.variant(resize: "100x100").processed)
       end
-      f.input :background, as: :file, input_html: { direct_upload: true }, hint: hint
+      f.input :file, as: :file, input_html: { direct_upload: true }, hint: hint
     end
 
     f.inputs "Translated fields" do

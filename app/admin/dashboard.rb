@@ -15,7 +15,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Настройки сайта" do
           pref = Preference.first
           unless pref.blank?
-            div image_tag pref.background.variant(resize: "100x100").processed unless pref.background
+            div image_tag pref.file.variant(resize: "100x100").processed unless pref.file
             div do
               ul do
                 li pref.about
