@@ -16,7 +16,7 @@ module ImagesHelper
     if image.respond_to?('crop') && image.crop.present?
       url_for image.file.variant(crop: image.crop, resize: resize).processed
     else
-      url_for image.file
+      url_for image.file.variant(resize: resize).processed
     end
   end
 end
