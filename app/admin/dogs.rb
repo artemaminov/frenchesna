@@ -39,7 +39,7 @@ ActiveAdmin.register Dog do
     end
     f.semantic_errors *f.object.errors.keys
     f.inputs 'Детали' do
-      f.input :avatar, as: :file, allow_destroy: true, hint: (image_tag(f.object.avatar.file.variant(resize: "100x100")) unless f.object.avatar.blank?), input_html: { direct_upload: true, name: "dog[avatar_attributes][file]", class: 'rcrop', data: { rcrop_picture_type: 'avatar' }}
+      f.input :avatar, as: :file, allow_destroy: true, hint: (image_tag(crop_image f.object.avatar, :avatar, "100x100") unless f.object.avatar.blank?), input_html: { direct_upload: true, name: "dog[avatar_attributes][file]", class: 'rcrop', data: { rcrop_picture_type: 'avatar' }}
 
       f.input :puppy
       f.input :rip
@@ -75,13 +75,13 @@ ActiveAdmin.register Dog do
     end
     f.inputs 'Изображения' do
       # byebug
-      f.input :background, as: :radio, collection: f.object.backgroundable.map { |i| [(image_tag i.file.variant(resize: "100x100").processed), i.id, checked: i.viewable_type_scope == 'Background'] }, input_html: { name: 'dog[background_attributes][id]' } unless f.object.pictures.blank?
+      f.input :background, as: :radio, collection: f.object.backgroundable.map { |i| [(image_tag crop_image i, :picture, '100x100'), i.id, checked: i.viewable_type_scope == 'Background'] }, input_html: { name: 'dog[background_attributes][id]' } unless f.object.pictures.blank?
       panel "Управление изображениями", class: 'dragndrop' do
         f.has_many :pictures, sortable: :order, sortable_start: 1, allow_destroy: true, new_record: false, heading: false do |p|
           img_class = "dogs-background" if p.object == f.object.background
           img_class = "dogs-avatar" if p.object == f.object.avatar
           p.input :file, hint: link_to(
-            image_tag(p.object.file.variant(crop: p.object.crop, resize: '100x100').processed),
+            image_tag(crop_image(p.object, :picture, '100x100')),
             p.object.file,
             class: img_class
           )

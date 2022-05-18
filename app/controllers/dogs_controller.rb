@@ -7,7 +7,7 @@ class DogsController < ApplicationController
 
   def show
     @dog = Dog.find(params[:id])
-    @background = (@dog.background.file.variant(crop: @dog.background.crop, resize: @dog.background.resize) unless @dog.background.blank?) || Preference.background
+    @background = (@dog.background unless @dog.background.blank?) || Preference.background
   end
 
 end

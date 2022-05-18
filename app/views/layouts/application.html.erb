@@ -10,7 +10,7 @@
     <%= render 'shared/yandex-metrika' %>
   </head>
 
-  <body style="background-image: url(<%= url_for(@background) unless @background.blank? %>)">
+  <body style="background-image: url(<%= crop_image(@background, :background) unless @background.blank? %>)">
     <header>
       <div class="logo">
         <a href="/"></a>

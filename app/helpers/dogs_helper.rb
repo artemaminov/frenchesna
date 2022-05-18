@@ -8,4 +8,5 @@ module DogsHelper
   def current_category? category, dog
     'checked' if category.include? dog
   end
+
 end
