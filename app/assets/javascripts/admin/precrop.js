@@ -107,7 +107,7 @@ class Cropper {
     const newInput = document.createElement('input')
     newInput.setAttribute('type', 'file')
     newInput.setAttribute('name', this.rcrop.pictureTypes[pictureType].fileInputName)
-    newInput.setAttribute('data-direct-upload-url', 'http://localhost:3000/rails/active_storage/direct_uploads')
+    newInput.setAttribute('data-direct-upload-url', '/rails/active_storage/direct_uploads')
     dt.items.add(file)
     newInput.files = dt.files
     this.rcrop.$data.append(newInput)
