@@ -145,7 +145,7 @@ ActiveAdmin.register Dog do
     def add_parents
       old_parents = [resource.father_id, resource.mother_id]
       parents = [permitted_params[:dog][:mother_id], permitted_params[:dog][:father_id]]
-      unless (parents - old_parents).empty?
+      unless parents.include?(nil) || (parents - old_parents).empty?
         resource.parent_ids = parents
       end
     end
