@@ -41,4 +41,12 @@
   <li class="submenu">
     <span class="title"><a href="/"><%= t('content.contacts') %></a></span>
   </li>
+
+  <div class="submenu descendants">
+    <span class="title"><%= t('content.dog.puppies_for_sale') %></span>
+    <ul class="list">
+      <%= render partial: "shared/dogs_list", locals: { dogs: @puppies.alive } %>
+    </ul>
+  </div>
+
 </ul>
