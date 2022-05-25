@@ -61,6 +61,7 @@
 #   }
 server '95.213.236.55', user: 'deploy', roles: %w{web app db}
 
+set :deploy_to, "/srv/apps/frenchesna.ru"
 set :rbenv_type, :user
 set :branch, :master
 set :rbenv_ruby, File.read('.ruby-version').strip
