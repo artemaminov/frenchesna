@@ -1,0 +1,133 @@
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  body {
+
+    header {
+
+      .logo {
+        display: none;
+        //margin: 45px 0 41px 30px;
+      }
+
+      .contacts {
+        display: none;
+        //position: relative;
+        //margin: 0 30px 3em 30px;
+        //text-align: right;
+      }
+
+      .language__switcher {
+        top: 15px;
+        margin: 0 30px;
+      }
+
+    }
+    .content {
+      flex-flow: column;
+      .sidebar, .main {
+        margin: 0 30px;
+        width: auto;
+      }
+      .sidebar {
+        &.right {
+          margin: 0 30px;
+          .descendants {
+            display: none;
+          }
+        }
+        .menu {
+          input#burger:checked {
+            & ~ .burger-menu {
+              label {
+                .line {
+                  &.top {
+                    display: none;
+                  }
+                  &.mid-top {
+                    transform: rotate(45deg);
+                    top: 6px;
+                  }
+                  &.mid-bottom {
+                    transform: rotate(-45deg);
+                    top: 4px;
+                  }
+                  &.bottom {
+                    display: none;
+                  }
+                }
+              }
+              & ~ ul {
+                display: block;
+                z-index: 1;
+                position: fixed;
+                overflow: scroll;
+              }
+            }
+            & ~ ul {
+              background-color: #5a83aa;
+              position: absolute;
+              top: 0;
+              right: 100px;
+              left: 0;
+              bottom: 0;
+              padding: 60px;
+            }
+            .submenu {
+              .descendants {
+                display: block;
+              }
+            }
+          }
+          .burger-menu {
+            display: block;
+            label {
+              padding: 10px 0;
+              display: block;
+              position: absolute;
+              right: 30px;
+              top: 10px;
+              cursor: pointer;
+              .line {
+                background: white;
+                height: 2px;
+                width: 40px;
+                display: block;
+                position: relative;
+                &.mid-top {
+                  top: 6px;
+                }
+                &.mid-bottom {
+                  top: 4px;
+                }
+                &.bottom {
+                  top: 10px;
+                }
+              }
+            }
+            & ~ ul {
+              display: none;
+            }
+          }
+          .descendants {
+            text-align: left;
+          }
+        }
+      }
+      .main {
+        flex: none;
+
+        .title {
+          margin-top: 5em;
+        }
+
+        .about-company {
+
+          p {
+            column-count: 1;
+          }
+
+        }
+
+      }
+    }
+  }
+}

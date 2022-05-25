@@ -1,218 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Alice|Montserrat:400,400i,700&subset=cyrillic');
 @import "variables", "mixins", "scrollbar";
 
-a[href^=tel] { color: inherit; text-decoration: none; }
-ul { direction:ltr; }
-
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  body {
-    header {
-      .logo {
-        margin: 45px 0 41px 30px;
-      }
-      .contacts {
-        position: relative;
-        margin: 0 30px 3em 30px;
-        text-align: right;
-      }
-    }
-    .content {
-      flex-flow: column;
-      .sidebar, .main {
-        margin: 0 30px;
-        width: auto;
-      }
-      .sidebar {
-        &.right {
-          margin: 0 30px;
-        }
-        .menu {
-          input#burger:checked {
-            & ~ .burger-menu {
-              label {
-                .line {
-                  &.top {
-                    display: none;
-                  }
-                  &.mid-top {
-                    transform: rotate(45deg);
-                    top: 6px;
-                  }
-                  &.mid-bottom {
-                    transform: rotate(-45deg);
-                    top: 4px;
-                  }
-                  &.bottom {
-                    display: none;
-                  }
-                }
-              }
-              & ~ ul {
-                display: block;
-                z-index: 1;
-                position: fixed;
-              }
-            }
-            & ~ ul {
-              background-color: #5a83aa;
-              position: absolute;
-              top: 0;
-              right: 100px;
-              left: 0;
-              bottom: 0;
-              padding: 60px;
-            }
-          }
-          .burger-menu {
-            display: block;
-            label {
-              padding: 10px 0;
-              display: block;
-              position: absolute;
-              right: 30px;
-              top: 30px;
-              cursor: pointer;
-              .line {
-                background: white;
-                height: 2px;
-                width: 40px;
-                display: block;
-                position: relative;
-                &.mid-top {
-                  top: 6px;
-                }
-                &.mid-bottom {
-                  top: 4px;
-                }
-                &.bottom {
-                  top: 10px;
-                }
-              }
-            }
-            & ~ ul {
-              display: none;
-            }
-          }
-          .descendants {
-            text-align: left;
-          }
-        }
-      }
-      .main {
-        flex: none;
-        .about-company {
-          p {
-            column-count: 1;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  body {
-    min-width: auto;
-    header {
-      .logo {
-        margin: 45px 0 41px 30px;
-      }
-      .contacts {
-        margin: 0 30px;
-        top: 70px;
-        right: 0;
-        display: inline-block;
-        position: absolute;
-        text-align: right;
-      }
-    }
-    .content {
-      flex-flow: column;
-      .sidebar, .main {
-        margin: 0 30px;
-        width: auto;
-      }
-      .sidebar {
-        &.right {
-          margin: 0 30px;
-        }
-        .menu {
-          .burger-menu {
-            display: none;
-          }
-          .descendants {
-            text-align: left;
-          }
-        }
-      }
-      .main {
-        flex: none;
-        .about-company {
-          p {
-            column-count: 1;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 1024px)  {
-  body {
-    min-width: 1024px;
-    header {
-      .logo {
-        margin: 45px 0 41px 60px;
-      }
-      .contacts {
-        margin: 0 60px;
-        top: 70px;
-        right: 0;
-        display: inline-block;
-        position: absolute;
-        text-align: right;
-      }
-    }
-    header, .content, footer {
-      max-width: 1330px;
-      margin: 0 auto;
-    }
-    .content {
-      .sidebar {
-        margin: 0 30px 0 60px;
-        &.right {
-          margin: 0 60px 0 30px;
-        }
-        .menu {
-          .burger-menu {
-            display: none;
-          }
-          .descendants {
-            text-align: right;
-            .list {
-              margin-bottom: 1.5em;
-            }
-          }
-        }
-      }
-      .main {
-        flex: 1;
-        display: block;
-        flex-direction: column;
-        .space {
-          flex: 1;
-        }
-        .about-company {
-          p {
-            column-count: 1;
-          }
-        }
-      }
-    }
-  }
-}
+@import "phone", "tablet", "pc";
 
 a {
+  &[href^=tel] {
+    color: inherit;
+    text-decoration: none;
+  }
+
   text-decoration: none;
   display: inline-block;
   color: #000;
@@ -229,6 +25,10 @@ a {
       position: relative;
     }
   }
+}
+
+ul {
+  direction:ltr;
 }
 
 .button {
@@ -251,7 +51,6 @@ html {
 
     .logo {
       background: asset_url('logo.png') no-repeat center center;
-      display: block;
 
       a {
         width: 100%;
@@ -288,9 +87,6 @@ html {
       }
 
       .language__switcher {
-        margin: 0 60px;
-        top: 15px;
-        right: 0;
         position: absolute;
         a {
           span.icon {
@@ -382,7 +178,7 @@ html {
 
       .main {
         flex-shrink: 10;
-        
+
         h1, h2 {
           color: $menu-color;
           text-shadow: $shadow;

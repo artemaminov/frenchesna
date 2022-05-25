@@ -1,0 +1,57 @@
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  body {
+    min-width: auto;
+    header {
+      .logo {
+        margin: 45px 0 41px 30px;
+      }
+
+      .contacts {
+        margin: 0 30px;
+        top: 70px;
+        right: 0;
+        display: inline-block;
+        position: absolute;
+        text-align: right;
+      }
+
+      .language__switcher {
+        top: 15px;
+        margin: 0 30px;
+      }
+
+    }
+    .content {
+      flex-flow: column;
+      .sidebar, .main {
+        margin: 0 30px;
+        width: auto;
+      }
+      .sidebar {
+        &.right {
+          margin: 0 30px;
+        }
+        .menu {
+          .burger-menu {
+            display: none;
+          }
+          .descendants {
+            text-align: left;
+          }
+        }
+      }
+      .main {
+
+        flex: none;
+        .about-company {
+
+          p {
+            column-count: 1;
+          }
+
+        }
+
+      }
+    }
+  }
+}
