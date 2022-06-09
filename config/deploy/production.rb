@@ -59,7 +59,7 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-server '95.213.236.55', user: 'deploy', roles: %w{web app db}
+server '5.101.51.33', user: 'deploy', roles: %w{web app db}
 
 set :deploy_to, "/srv/apps/frenchesna.ru"
 set :rbenv_type, :user
