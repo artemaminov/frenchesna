@@ -91,7 +91,7 @@ ActiveAdmin.register Dog do
     end
 
     div id: 'rcrop_container'
-    div id: 'rcrop_data'
+    div id: 'rcrop_data', hidden: true
 
     f.actions
 
